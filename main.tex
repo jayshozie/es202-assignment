@@ -75,16 +75,16 @@ The directional angles $\alpha, \beta, \gamma$ are given by the direction
 cosines:
 \begin{alignat*}{3}
 	% Row 1: Symbolic Formulas
-	\alpha & = \cos^{-1}\left(\frac{r_x}{\norm*{\vec{r}}}\right) \quad &
-	\beta  & = \cos^{-1}\left(\frac{r_y}{\norm*{\vec{r}}}\right) \quad &
-	\gamma & = \cos^{-1}\left(\frac{r_z}{\norm*{\vec{r}}}\right)         \\
+	\alpha & = \cos^{-1}\left(\frac{r_{x}}{\norm*{\vec{r}}}\right) \quad &
+	\beta  & = \cos^{-1}\left(\frac{r_{y}}{\norm*{\vec{r}}}\right) \quad &
+	\gamma & = \cos^{-1}\left(\frac{r_{z}}{\norm*{\vec{r}}}\right)         \\
 	% Row 2: Numerical Substitution (Empty LHS aligns to the equals sign above)
-	       & = \cos^{-1}\left(\frac{5}{\sqrt{90}}\right)               &
-	       & = \cos^{-1}\left(\frac{7}{\sqrt{90}}\right)               &
-	       & = \cos^{-1}\left(\frac{4}{\sqrt{90}}\right)                 \\
+	       & = \cos^{-1}\left(\frac{5}{\sqrt{90}}\right)                 &
+	       & = \cos^{-1}\left(\frac{7}{\sqrt{90}}\right)                 &
+	       & = \cos^{-1}\left(\frac{4}{\sqrt{90}}\right)                   \\
 	% Row 3: Final Answer
-	       & \approx 58.19^\circ                                       &
-	       & \approx 42.45^\circ                                       &
+	       & \approx 58.19^\circ                                         &
+	       & \approx 42.45^\circ                                         &
 	       & \approx 64.06^\circ
 \end{alignat*}
 \pagebreak
@@ -109,7 +109,7 @@ We know that for any real angle $\theta$, the cosine function is bounded:
 \end{align*}
 Substituting this inequality back into our original equation:
 \begin{align}
-	\nonumber \norm*{\vec{a} \cdot \vec{b}} & = \norm*{\vec{a} \cdot \vec{b}} \underbrace{\norm*{\cos{\theta}}}_{\le 1}
+	\nonumber \norm*{\vec{a} \cdot \vec{b}} & = \norm*{\vec{a}} \cdot \norm*{\vec{b}} \underbrace{\norm*{\cos{\theta}}}_{\le 1}
 	\nonumber \intertext{Therefore proving:}
 	\norm*{\vec{a} \cdot \vec{b}}           & \le \norm*{\vec{a}}\cdot\norm*{\vec{b}} \label{cauchy-schwartz}
 \end{align}
@@ -128,9 +128,9 @@ Since magnitudes are non-negative by definition, proving the inequality is
 equivalent to proving it for the squares of the magnitudes. Consider the square
 of the sum:
 \begin{align*}
-	\norm*{\vec{a} + \vec{b}}^{2} & = (\vec{a} + \vec{b}) \cdot (\vec{a} + \vec{b})                        \\
-	                              & = \vec{a} \cdot \vec{a} + 2(\vec{a} + \vec{b}) + \vec{b} \cdot \vec{b} \\
-	                              & = \norm*{\vec{a}}^{2} + 2(\vec{a} \cdot \vec{b}) + \norm*{\vec{b}}     \\
+	\norm*{\vec{a} + \vec{b}}^{2} & = (\vec{a} + \vec{b}) \cdot (\vec{a} + \vec{b})                            \\
+	                              & = \vec{a} \cdot \vec{a} + 2(\vec{a} \cdot \vec{b}) + \vec{b} \cdot \vec{b} \\
+	                              & = \norm*{\vec{a}}^{2} + 2(\vec{a} \cdot \vec{b}) + \norm*{\vec{b}}^{2}     \\
 \end{align*}
 From (\ref{cauchy-schwartz})
 (\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{Cauchy-Schwartz Inequality}),
@@ -177,7 +177,7 @@ separated by an angle $\theta$, is defined as:
 	\nonumber \intertext{Observe that,}
 	\nonumber \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \cos^{2}{\theta} & = (\vec{a} \cdot \vec{b})^{2}
 	\nonumber \intertext{Thus, by substituting that, we complete our proof:}
-    \norm*{\vec{a} \times \vec{b}}                                     & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} - (\vec{a} \cdot \vec{b})^{2}
+	\norm*{\vec{a} \times \vec{b}}^{2}                                 & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} - (\vec{a} \cdot \vec{b})^{2}
 \end{align}
 
 \pagebreak
@@ -193,6 +193,570 @@ $\vec{a} = (3,-4,8)$ as a linear combination of them.
 \\
 \\
 \textbf{Solution}
+We will divide our solution to two parts. In the first part, we'll prove that
+the given vectors $\vec{u}_{1}$, $\vec{u}_{2}$, and $\vec{u}_{3}$ are linearly
+independent, thus forming a basis for $\mathbb{R}^{3}$; then we'll find a linear
+combination for the vector $\vec{a}$.
+\\
+\\
+\textbf{Part 1: Linear Independence}
+We form a matrix $A$ with the vectors $\vec{u}_{1}$, $\vec{u}_{2}$, and
+$\vec{u}_{3}$ as columns. The vectors are linearly independent if
+$\det(A) \neq 0$.
+\begin{align*}
+	\det(A) =
+	\begin{vmatrix}
+		1 & 1 & 1 \\
+		0 & 1 & 1 \\
+		0 & 0 & 1
+	\end{vmatrix}
+\end{align*}
+Since this is an upper-triangular matrix, the determinant is the product of the
+diagonal entries:
+\begin{align*}
+	\det(A) = 1 \cdot 1 \cdot 1 = 1 \neq 0
+\end{align*}
+Therefore, the vectors are linearly independent and form a basis for
+$\mathbb{R}^3$.
+\\
+\\
+\textbf{Part 2: Linear Combination}
+We wish to find coefficients $c_{1}$, $c_{2}$, and $c_{3}$ such that:
+\begin{align*}
+	c_{1}\cdot\vec{u}_{1} + c_{2}\cdot\vec{u}_{2} + c_{3}\cdot\vec{u}_{3} = \vec{a}
+\end{align*}
+This corresponds to the linear system:
+\begin{align*}
+	\left[
+		\begin{array}{ccc|c}
+			1 & 1 & 1 & 3  \\
+			0 & 1 & 1 & -4 \\
+			0 & 0 & 1 & 8  \\
+		\end{array}
+		\right]
+\end{align*}
 
+Using back-substitution:
+\begin{align*}
+	1. \quad & c_{3} = 8                                                       \\
+	2. \quad & c_{2} + 8 = -4 \implies c_{2} = -12                             \\
+	3. \quad & c_{1} + (-12) + 8 = 3 \implies c_{1} - 4 = 3 \implies c_{1} = 7
+\end{align*}
 
+Using those coefficients, we can say that:
+\begin{align*}
+	\vec{a} = 7\vec{u}_{1} - 12\vec{u}_{2} + 8\vec{u}_{3}
+\end{align*}
+
+\pagebreak
+
+% Question 6
+
+\section{Question 6}
+
+\textbf{Problem}
+Obtain an orthonormal set from the given set of vectors using Gram-Schmidt
+Orthogonalization Process:
+\begin{align*}
+	\vec{B} =
+	\left\{
+	\left(
+	\frac{1}{2}, \frac{1}{2}, 1
+	\right)
+	\left(
+	-1, 1, -\frac{1}{2}
+	\right)
+	\left(
+	-1, \frac{1}{2}, 1
+	\right)
+	\right\}
+\end{align*}
+\\
+\\
+\textbf{Solution}
+Let the given vectors be $\vec{v}_{1}$, $\vec{v}_{2}$, and $\vec{v}_{3}$. We
+will generate an orthogonal set $\{\vec{u}_{1}, \vec{u}_{2}, \vec{u}_{3}\}$ and
+then normalize them to get the orthonormal set
+$\{\vec{e}_{1}, \vec{e}_{2}, \vec{e}_{3}\}$.
+\\
+\\
+\textbf{Step 1. Process the first vector}
+To use the Gram-Schmidt Orthogonalization Process, we need to pick a vector. For
+convention, we'll pick $\vec{v}_{1}$ as our first vector.
+\begin{align*}
+	\vec{u}_{1}       & = \vec{v}_{1} = \left(\frac{1}{2}, \frac{1}{2}, 1\right)
+	\intertext{Calculating the magnitude of $\vec{u}_{1}$ gives us:}
+	\norm*{\vec{u}_1} & = \sqrt{\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2 + 1^2} \\
+	                  & = \sqrt{\frac{3}{2}}
+	\intertext{So, our first orthonormal vector $\vec{e}_{1}$ is:}
+	\vec{e}_{1}       & = \frac{\vec{u}_{1}}{\norm*{\vec{u}_{1}}}                              \\
+	                  & = \sqrt{\frac{2}{3}}\left(\frac{1}{2}, \frac{1}{2}, 1\right)
+\end{align*}
+\textbf{Step 2. Orthogonalize the second vector}
+We calculate the projection of $\vec{u}_{2}$ onto $\vec{u}_{1}$.
+\begin{align*}
+	\vec{v}_{2} \cdot \vec{u}_{1} & = (-1)\left(\frac{1}{2}\right) + (1)\left(\frac{1}{2}\right) + \left(-\frac{1}{2}\right)(1) = -\frac{1}{2} \\
+	\vec{u}_{2}                   & = \vec{v}_{2} - \frac{\vec{v}_{2} \cdot \vec{u}_{1}}{\norm*{\vec{u}_{1}}^2} \vec{u}_{1}
+	= \left(-1, 1, -\frac{1}{2}\right) - \frac{-1/2}{3/2} \left(\frac{1}{2}, \frac{1}{2}, 1\right)                                             \\
+	                              & = \left(-1, 1, -\frac{1}{2}\right) + \frac{1}{3} \left(\frac{1}{2}, \frac{1}{2}, 1\right)
+	= \left(-\frac{5}{6}, \frac{7}{6}, -\frac{1}{6}\right)
+\end{align*}
+We, then, normalize $\vec{u}_{2}$ by:
+\begin{align*}
+	\norm*{\vec{u}_{2}}^2 & = \frac{25}{36} + \frac{49}{36} + \frac{1}{36} = \frac{75}{36} = \frac{25}{12} \implies \norm*{\vec{u}_{2}} = \frac{5}{2\sqrt{3}}                                                                  \\
+	\vec{e}_{2}           & = \frac{\vec{u}_{2}}{\norm*{\vec{u}_{2}}} = \frac{2\sqrt{3}}{5}\left(-\frac{5}{6}, \frac{7}{6}, -\frac{1}{6}\right) = \left(-\frac{\sqrt{3}}{3}, \frac{7\sqrt{3}}{15}, -\frac{\sqrt{3}}{15}\right)
+\end{align*}
+\\
+\textbf{Step 3: Orthogonalize the third vector}
+Formula: $\vec{u}_{3} = \vec{v}_{3} - \text{proj}_{\vec{u}_{1}}(\vec{v}_{3}) - \text{proj}_{\vec{u}_{2}}(\vec{v}_{3})$.
+First, we compute the projection coefficients:
+\begin{align*}
+	\frac{\vec{v}_{3} \cdot \vec{u}_{1}}{\norm*{\vec{u}_{1}}^2} & = \frac{(-1)(\frac{1}{2}) + (\frac{1}{2})(\frac{1}{2}) + (1)(1)}{3/2} = \frac{3/4}{3/2} = \frac{1}{2}                                                                             \\
+	\frac{\vec{v}_{3} \cdot \vec{u}_{2}}{\norm*{\vec{u}_{2}}^2} & = \frac{(-1)(-\frac{5}{6}) + (\frac{1}{2})(\frac{7}{6}) + (1)(-\frac{1}{6})}{25/12} = \frac{\frac{5}{6} + \frac{7}{12} - \frac{2}{12}}{25/12} = \frac{15/12}{25/12} = \frac{3}{5}
+\end{align*}
+Now substitute back to find $\vec{u}_{3}$:
+\begin{align*}
+	\vec{u}_{3} & = \vec{v}_{3} - \frac{1}{2}\vec{u}_{1} - \frac{3}{5}\vec{u}_{2}                                                                                 \\
+	            & = \left(-1, \frac{1}{2}, 1\right) - \left(\frac{1}{4}, \frac{1}{4}, \frac{1}{2}\right) - \left(-\frac{1}{2}, \frac{7}{10}, -\frac{1}{10}\right) \\
+	            & = \left( -1 - 0.25 + 0.5, \quad 0.5 - 0.25 - 0.7, \quad 1 - 0.5 + 0.1 \right)                                                                   \\
+	            & = \left( -0.75, -0.45, 0.6 \right) = \left( -\frac{3}{4}, -\frac{9}{20}, \frac{3}{5} \right)
+\end{align*}
+Normalize $\vec{u}_{3}$:
+\begin{align*}
+	\norm*{\vec{u}_{3}}^2 & = \frac{9}{16} + \frac{81}{400} + \frac{9}{25} = \frac{225 + 81 + 144}{400} = \frac{450}{400} = \frac{9}{8}    \\
+	\vec{e}_{3}           & = \frac{\vec{u}_{3}}{\sqrt{9/8}} = \frac{2\sqrt{2}}{3} \left( -\frac{3}{4}, -\frac{9}{20}, \frac{3}{5} \right)
+	= \left( -\frac{\sqrt{2}}{2}, -\frac{3\sqrt{2}}{10}, \frac{2\sqrt{2}}{5} \right)
+\end{align*}
+
+\textbf{Final Answer:} The orthonormal set is
+$\{ \vec{e}_{1}, \vec{e}_{2}, \vec{e}_{3} \}$, where:
+\begin{align*}
+	\vec{e}_{1} & =
+	\left(
+	\frac{\sqrt{2}}{2\sqrt{3}}, \frac{\sqrt{2}}{2\sqrt{3}}, \frac{\sqrt{2}}{\sqrt{3}}
+	\right)         \\
+	\vec{e}_{2} & =
+	\left(
+	-\frac{\sqrt{3}}{3}, \frac{7\sqrt{3}}{15}, -\frac{\sqrt{3}}{15}
+	\right)         \\
+	\vec{e}_{3} & =
+	\left(
+	-\frac{\sqrt{2}}{2}, -\frac{3\sqrt{2}}{10}, \frac{2\sqrt{2}}{5}
+	\right)
+\end{align*}
+
+\pagebreak
+
+% Question 7
+
+\section{Question 7}
+\textbf{Problem}
+Verify that the matrix $A$ satisfies its own characteristic equation
+\[
+	A =
+	\begin{bmatrix}
+		1 & -2 \\
+		4 & 5  \\
+	\end{bmatrix}
+\]
+\\
+\\
+\textbf{Solution}
+\\
+\textbf{Step 1. Find the Characteristic Equation}
+The characteristic equation of a matrix is given by $\det(A - \lambda I) = 0$.
+\begin{align*}
+	\det(A - \lambda I) & = \begin{vmatrix} 1 - \lambda & -2 \\ 4 & 5 - \lambda \end{vmatrix} \\
+	                    & = (1 - \lambda)(5 - \lambda) - (-2)(4)                              \\
+	                    & = (5 - \lambda - 5\lambda + \lambda^2) - (-8)                       \\
+	                    & = \lambda^2 - 6\lambda + 5 + 8                                      \\
+	                    & = \lambda^2 - 6\lambda + 13
+\end{align*}
+Thus, the characteristic equation is $\lambda^2 - 6\lambda + 13 = 0$.
+\\
+\textbf{Step 2. Verify for Matrix A}
+According to the Cayley-Hamilton theorem, the matrix $A$ should satisfy:
+\[
+	A^2 - 6A + 13I = 0
+\]
+First, we calculate $A^2$:
+\begin{align*}
+	A^2 & = \begin{bmatrix} 1 & -2 \\ 4 & 5 \end{bmatrix} \begin{bmatrix} 1 & -2 \\ 4 & 5 \end{bmatrix} \\
+	    & = \begin{bmatrix}
+		        (1)(1) + (-2)(4) & (1)(-2) + (-2)(5) \\
+		        (4)(1) + (5)(4)  & (4)(-2) + (5)(5)
+	        \end{bmatrix}                                                        \\
+	    & = \begin{bmatrix}
+		        1 - 8  & -2 - 10 \\
+		        4 + 20 & -8 + 25
+	        \end{bmatrix}
+	= \begin{bmatrix} -7 & -12 \\ 24 & 17 \end{bmatrix}
+\end{align*}
+Now, we substitute $A^2$ and $A$ into the equation:
+\begin{align*}
+	A^2 - 6A + 13I & = \begin{bmatrix} -7 & -12 \\ 24 & 17 \end{bmatrix} - 6\begin{bmatrix} 1 & -2 \\ 4 & 5 \end{bmatrix} + 13\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}   \\
+	               & = \begin{bmatrix} -7 & -12 \\ 24 & 17 \end{bmatrix} - \begin{bmatrix} 6 & -12 \\ 24 & 30 \end{bmatrix} + \begin{bmatrix} 13 & 0 \\ 0 & 13 \end{bmatrix} \\
+	               & = \begin{bmatrix}
+		                   -7 - 6 + 13 & -12 - (-12) + 0 \\
+		                   24 - 24 + 0 & 17 - 30 + 13
+	                   \end{bmatrix}                                                                                                                         \\
+	               & = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}
+\end{align*}
+The result is the zero matrix, verifying that $A$ satisfies its own characteristic equation.
+
+\pagebreak
+
+% Question 8
+
+\section{Question 8}
+\textbf{Problem}
+Compute
+$
+	A^{m}:
+	A = \begin{bmatrix}
+		-1 & 2  \\
+		0  & -3 \\
+	\end{bmatrix}
+$, $m = 6$.
+\\
+\\
+\textbf{Solution}
+We will compute $A^6$ by diagonalizing the matrix.
+We find matrices $P$ and $D$ such that $A = PDP^{-1}$, which implies $A^6 = PD^6P^{-1}$.
+\\
+\\
+\textbf{Step 1. Find Eigenvalues}
+Since $A$ is an upper triangular matrix, its eigenvalues are the diagonal entries:
+\[
+	\lambda_{1} = -1, \quad \lambda_{2} = -3
+\]
+\\
+\\
+\textbf{Step 2. Find Eigenvectors}
+\\
+\\
+For $\lambda_{1} = -1$:
+\[
+	(A - (-1)I)\vec{v}_{1} = \begin{bmatrix} 0 & 2 \\ 0 & -2 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\]
+From row 1:
+\begin{align*}
+	2y = 0 \implies y=0
+\end{align*}
+$x$ is a free variable, so we choose
+\begin{align*}
+	\vec{v}_{1} =
+	\begin{bmatrix}
+		1 \\
+		0
+	\end{bmatrix}
+\end{align*}
+\\
+For $\lambda_{2} = -3$:
+\[
+	(A - (-3)I)\vec{v}_{2} = \begin{bmatrix} 2 & 2 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\]
+From row 1:
+\begin{align*}
+	2x + 2y = 0 \implies x = -y
+\end{align*}
+Let $y=1$, then $x=-1$. We choose
+\begin{align*}
+	\vec{v}_{2} =
+	\begin{bmatrix}
+		-1 \\
+		1
+	\end{bmatrix}
+\end{align*}
+\\
+\\
+\textbf{Step 3: Construct Matrices $P$ and $D$}
+The matrix $P$ consists of the eigenvectors, and $D$ contains the eigenvalues:
+\[
+	P = \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix}, \quad D = \begin{bmatrix} -1 & 0 \\ 0 & -3 \end{bmatrix}
+\]
+We need to find to have the final diagonalization formula $P^{-1}$. Observe that
+the determinant of $P$ is $(1)(1) - (-1)(0) = 1$.
+\[
+	P^{-1} = \frac{1}{1} \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
+\]
+\\
+\textbf{Step 4: Compute $A^6$}
+Using the diagonalization formula:
+\begin{align*}
+	A^6 & = P D^6 P^{-1}                                                                                                                                      \\
+	    & = \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} (-1)^6 & 0 \\ 0 & (-3)^6 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \\
+	    & = \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 0 & 729 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}         \\
+	    & = \begin{bmatrix} 1 & -729 \\ 0 & 729 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}                                                    \\
+	    & = \begin{bmatrix} 1(1) + (-729)(0) & 1(1) + (-729)(1) \\ 0(1) + 729(0) & 0(1) + 729(1) \end{bmatrix}                                                \\
+	    & = \begin{bmatrix} 1 & -728 \\ 0 & 729 \end{bmatrix}
+\end{align*}
+
+\pagebreak
+
+% Question 9
+
+\section{Question 9}
+\textbf{Problem}
+Determine whether the given matrix $A$ is diagonalizable. If so, find the matrix
+$P$ that diagonalizes $A$, and the diagonal matrix $D$ such that $D = P^{-1}AP$.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\\
+\textbf{Step 1. Find Eigenvalues}
+We solve the characteristic equation $\det(A - \lambda I) = 0$:
+\begin{align*}
+	\begin{vmatrix} -\lambda & 5 \\ 1 & -\lambda \end{vmatrix} & = 0                                \\
+	(-\lambda)(-\lambda) - (5)(1)                              & = 0                                \\
+	\lambda^{2} - 5                                            & = 0 \implies \lambda = \pm\sqrt{5}
+\end{align*}
+Since there are two distinct real eigenvalues, the matrix is diagonalizable.
+Let $\lambda_{1} = \sqrt{5}$ and $\lambda_{2} = -\sqrt{5}$.
+\\
+\\
+\\
+\textbf{Step 2. Find Eigenvectors}
+\\
+\\
+For $\lambda_{1} = \sqrt{5}$:
+\[
+	(A - \sqrt{5}I)\vec{v}_{1} = \begin{bmatrix} -\sqrt{5} & 5 \\ 1 & -\sqrt{5} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\]
+From the second row:
+\begin{align*}
+	1x - \sqrt{5}y = 0 \implies x = \sqrt{5}y
+\end{align*}
+Let $y=1$, then $x=\sqrt{5}$. We choose the eigenvector $\vec{v}_{1}$
+corresponding to the eigenvalue $\lambda_{1}$ as:
+\[
+	\vec{v}_{1} = \begin{bmatrix} \sqrt{5} \\ 1 \end{bmatrix}
+\]
+For $\lambda_{2} = -\sqrt{5}$:
+\[
+	(A - (-\sqrt{5})I)\vec{v}_{2} = \begin{bmatrix} \sqrt{5} & 5 \\ 1 & \sqrt{5} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\]
+From the second row:
+\begin{align*}
+	1x + \sqrt{5}y = 0 \implies x = -\sqrt{5}y
+\end{align*}
+Let $y=1$, then $x=-\sqrt{5}$. We choose the eigenvector $\vec{v}_{2}$
+corresponding to the eigenvalue $\lambda_{2}$ as:
+\[
+	\vec{v}_{2} = \begin{bmatrix} -\sqrt{5} \\ 1 \end{bmatrix}
+\]
+\textbf{Step 3. Construct Matrices $P$ and $D$}
+The diagonal matrix $D$ contains the eigenvalues, and $P$ contains the corresponding eigenvectors as columns.
+\[
+	D = \begin{bmatrix} \sqrt{5} & 0 \\ 0 & -\sqrt{5} \end{bmatrix}, \quad
+	P = \begin{bmatrix} \sqrt{5} & -\sqrt{5} \\ 1 & 1 \end{bmatrix}
+\]
+So, the matrix $A$ is diagonalizable with the matrices $P$ and $D$ given above.
+
+\pagebreak
+
+% Question 10
+
+\section{Question 10}
+\textbf{Problem}
+Find a basis for i) column space, ii) row space, iii) null space of matrix $A$:
+\begin{align*}
+	A =
+	\begin{bmatrix}
+		0 & 6 & 6  & 0 \\
+		1 & 2 & 1  & 1 \\
+		0 & 1 & -3 & 4 \\
+		1 & 0 & 2  & 0
+	\end{bmatrix}
+\end{align*}
+\\
+\\
+\textbf{Solution}
+To find the bases, we perform Gaussian Elimination to reduce matrix $A$ to Row Echelon Form (REF).
+\\
+\\
+\textbf{Step 1. Row Reduction}
+Swap $R_{1}$ and $R_{2}$ to get a pivot in the first column:
+\[
+	\xrightarrow{R_{1} \leftrightarrow R_{2}}
+	\begin{bmatrix}
+		1 & 2 & 1  & 1 \\
+		0 & 6 & 6  & 0 \\
+		0 & 1 & -3 & 4 \\
+		1 & 0 & 2  & 0
+	\end{bmatrix}
+\]
+Eliminate the entry in $R_{4}$ using $R_{1}$ ($R_{4} \to R_{4} - R_{1}$):
+\[
+	\xrightarrow{R_{4} - R_{1}}
+	\begin{bmatrix}
+		1 & 2  & 1  & 1  \\
+		0 & 6  & 6  & 0  \\
+		0 & 1  & -3 & 4  \\
+		0 & -2 & 1  & -1
+	\end{bmatrix}
+\]
+Simplify $R_{2}$ by dividing by 6 ($R_{2} \to \frac{1}{6}R_{2}$):
+\[
+	\xrightarrow{\frac{1}{6}R_{2}}
+	\begin{bmatrix}
+		1 & 2  & 1  & 1  \\
+		0 & 1  & 1  & 0  \\
+		0 & 1  & -3 & 4  \\
+		0 & -2 & 1  & -1
+	\end{bmatrix}
+\]
+Eliminate entries below the second pivot ($R_{3} \to R_{3} - R_{2}$ and
+$R_{4} \to R_{4} + 2R_{2}$):
+\[
+	\begin{bmatrix}
+		1 & 2 & 1  & 1  \\
+		0 & 1 & 1  & 0  \\
+		0 & 0 & -4 & 4  \\
+		0 & 0 & 3  & -1
+	\end{bmatrix}
+\]
+Simplify $R_{3}$ ($R_{3} \to -\frac{1}{4}R_{3}$) to get pivot 1:
+\[
+	\xrightarrow{-\frac{1}{4}R_{3}}
+	\begin{bmatrix}
+		1 & 2 & 1 & 1  \\
+		0 & 1 & 1 & 0  \\
+		0 & 0 & 1 & -1 \\
+		0 & 0 & 3 & -1
+	\end{bmatrix}
+\]
+Eliminate the entry in $R_{4}$ ($R_{4} \to R_{4} - 3R_{3}$):
+\[
+	\xrightarrow{R_{4} - 3R_{3}}
+	\begin{bmatrix}
+		1 & 2 & 1 & 1  \\
+		0 & 1 & 1 & 0  \\
+		0 & 0 & 1 & -1 \\
+		0 & 0 & 0 & 2
+	\end{bmatrix}: \text{REF}
+\]
+Now that the matrix is in \textbf{Row Echelon Form}, we have pivots in columns
+1, 2, 3, and 4. Since there are 4 pivots for a $4 \times 4$ matrix, the matrix
+has Full Rank (Rank = 4).
+\\
+\\
+\textbf{i) Basis for Column Space}
+The basis for the column space consists of the pivot columns from the \textbf{original} matrix $A$. Since all columns have pivots:
+\[
+	\text{Basis}_{Col} = \left\{
+	\begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \end{pmatrix},
+	\begin{pmatrix} 6 \\ 2 \\ 1 \\ 0 \end{pmatrix},
+	\begin{pmatrix} 6 \\ 1 \\ -3 \\ 2 \end{pmatrix},
+	\begin{pmatrix} 0 \\ 1 \\ 4 \\ 0 \end{pmatrix}
+	\right\}
+\]
+\\
+\\
+\textbf{ii) Basis for Row Space}
+The basis for the row space consists of the non-zero rows of the \textbf{Row Echelon Form}:
+\[
+	\text{Basis}_{Row} = \left\{
+	(1, 2, 1, 1), \quad
+	(0, 1, 1, 0), \quad
+	(0, 0, 1, -1), \quad
+	(0, 0, 0, 1)
+	\right\}
+\]
+\\
+\\
+\textbf{iii) Basis for Null Space}
+The null space is found by solving $A\vec{x} = \vec{0}$.
+Since the matrix is full rank, there are no free variables. The only solution is the trivial solution $\vec{x} = \vec{0}$.
+\[
+	\text{Null Space} = \{ \vec{0} \}
+\]
+The dimension of the null space is 0, so the basis is the empty set $\emptyset$.
+
+\pagebreak
+
+% Question 11
+
+\section{Question 11}
+\textbf{Problem}
+Obtain an orthonormal set from the given set of vectors using Gram-Schmidt
+Orthogonalization Process.\\
+\[
+	\vec{V}_{1} = (1, 0, 1), \quad \vec{V}_{2} = (1, 1, 0), \quad \vec{V}_{3} = (1, -2, -3)
+\]
+\\
+\\
+\textbf{Solution}
+We generate an orthogonal set $\{\vec{u}_{1}, \vec{u}_{2}, \vec{u}_{3}\}$ and
+then normalize to get $\{\vec{e}_{1}, \vec{e}_{2}, \vec{e}_{3}\}$.
+\\
+\\
+\textbf{Step 1. Process first vector}
+\\
+Set $\vec{u}_{1} = \vec{V}_{1} = (1, 0, 1)$.
+\[
+	\norm*{\vec{u}_{1}}^2 = 1^2 + 0^2 + 1^2 = 2 \implies \norm*{\vec{u}_{1}} = \sqrt{2}
+\]
+The first orthonormal vector is:
+\[
+	\vec{e}_{1} = \frac{\vec{u}_{1}}{\sqrt{2}} = \left( \frac{1}{\sqrt{2}}, 0, \frac{1}{\sqrt{2}} \right)
+\]
+\\
+\\
+\textbf{Step 2. Orthogonalize second vector}
+\\
+Calculate projection of $\vec{V}_{2}$ onto $\vec{u}_{1}$:
+\begin{align*}
+	\vec{V}_{2} \cdot \vec{u}_{1} & = (1)(1) + (1)(0) + (0)(1) = 1                                                          \\
+	\vec{u}_{2}                   & = \vec{V}_{2} - \frac{\vec{V}_{2} \cdot \vec{u}_{1}}{\norm*{\vec{u}_{1}}^2} \vec{u}_{1} \\
+	                              & = (1, 1, 0) - \frac{1}{2}(1, 0, 1)                                                      \\
+	                              & = (1, 1, 0) - (0.5, 0, 0.5)                                                             \\
+	                              & = (0.5, 1, -0.5) = \left( \frac{1}{2}, 1, -\frac{1}{2} \right)
+\end{align*}
+Normalize $\vec{u}_{2}$:
+\begin{align*}
+	\norm*{\vec{u}_{2}}^2 & = \left(\frac{1}{2}\right)^2 + 1^2 + \left(-\frac{1}{2}\right)^2 = \frac{1}{4} + 1 + \frac{1}{4} = \frac{3}{2} \\
+	\norm*{\vec{u}_{2}}   & = \sqrt{\frac{3}{2}}                                                                                           \\
+	\vec{e}_{2}           & = \frac{\vec{u}_{2}}{\sqrt{3/2}} = \sqrt{\frac{2}{3}} \left( \frac{1}{2}, 1, -\frac{1}{2} \right)
+	= \left( \frac{1}{\sqrt{6}}, \frac{2}{\sqrt{6}}, -\frac{1}{\sqrt{6}} \right)
+\end{align*}
+\textbf{Step 3. Orthogonalize third vector}
+\\
+Formula: $\vec{u}_{3} = \vec{V}_{3} - \text{proj}_{\vec{u}_{1}}(\vec{V}_{3}) - \text{proj}_{\vec{u}_{2}}(\vec{V}_{3})$.
+First, compute the dot products:
+\begin{align*}
+	\vec{V}_{3} \cdot \vec{u}_{1} & = (1)(1) + (-2)(0) + (-3)(1) = 1 - 3 = -2             \\
+	\vec{V}_{3} \cdot \vec{u}_{2} & = (1)(0.5) + (-2)(1) + (-3)(-0.5) = 0.5 - 2 + 1.5 = 0
+\end{align*}
+Since $\vec{V}_{3} \cdot \vec{u}_{2} = 0$, the vector $\vec{V}_{3}$ is already orthogonal to $\vec{u}_{2}$, so the second projection term is zero.
+\begin{align*}
+	\vec{u}_{3} & = \vec{V}_{3} - \frac{-2}{2}\vec{u}_{1} - 0 \\
+	            & = (1, -2, -3) - (-1)(1, 0, 1)               \\
+	            & = (1, -2, -3) + (1, 0, 1)                   \\
+	            & = (2, -2, -2)
+\end{align*}
+Normalize $\vec{u}_{3}$:
+\begin{align*}
+	\norm*{\vec{u}_{3}} & = \sqrt{2^2 + (-2)^2 + (-2)^2} = \sqrt{4 + 4 + 4} = \sqrt{12} = 2\sqrt{3} \\
+	\vec{e}_{3}         & = \frac{(2, -2, -2)}{2\sqrt{3}} = \frac{(1, -1, -1)}{\sqrt{3}}
+	= \left( \frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}} \right)
+\end{align*}
+\\
+The orthonormal set is $\{ \vec{e}_{1}, \vec{e}_{2}, \vec{e}_{3} \}$, where
+\[
+	\vec{e}_{1} =
+	\left(
+	\frac{1}{\sqrt{2}}, 0, \frac{1}{\sqrt{2}}
+	\right), \quad
+	\vec{e}_{2} = 
+	\left(
+    \frac{1}{\sqrt{6}}, \frac{2}{\sqrt{6}}, \frac{1}{\sqrt{6}}
+	\right), \quad
+    \vec{e}_{3} = 
+	\left(
+    \frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}
+	\right)
+\]
 \end{document}

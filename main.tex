@@ -20,7 +20,7 @@
 \date{05/01/2026}
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
+    linkcolor=blue,
     filecolor=magenta,      
     urlcolor=cyan,
     }
@@ -30,6 +30,7 @@
 \pagebreak
 
 \tableofcontents
+
 \pagebreak
 
 \section{Introduction}
@@ -53,6 +54,7 @@ also as a proof of the fact that this entire document was written by hand.
 % Question 1
 
 \section{Question 1}
+\label{question-1}
 \textbf{Problem}
 An airplane is monitored at coordinates $(5, 7, 4)$ relative to the airport
 (South, East, Up). Find the directional angles of the plane.
@@ -61,42 +63,136 @@ An airplane is monitored at coordinates $(5, 7, 4)$ relative to the airport
 \textbf{Solution:}
 Let the position vector of the plane be $\vec{r}$. We define the axes such that
 $x=\text{South}$, $y=\text{East}$, and $z=\text{Up}$.
-
 \begin{align*}
 	% define the vector of the airplane
-	\vec{r}        & = 5\hat{i} + 7\hat{j} + 4\hat{k} \\
-	\norm{\vec{r}} & = \sqrt{5^{2} + 7^{2} + 4^{2}}   \\
-	               & = \sqrt{25 + 49 + 16}            \\
-	               & = \sqrt{90}                      \\
-	               & \approx 9.4868                   \\
+	\vec{r}         & = 5\hat{i} + 7\hat{j} + 4\hat{k} \\
+	\norm*{\vec{r}} & = \sqrt{5^{2} + 7^{2} + 4^{2}}   \\
+	                & = \sqrt{25 + 49 + 16}            \\
+	                & = \sqrt{90}                      \\
+	                & \approx 9.4868                   \\
 \end{align*}
 The directional angles $\alpha, \beta, \gamma$ are given by the direction
 cosines:
 \begin{alignat*}{3}
 	% Row 1: Symbolic Formulas
-	\alpha & = \cos^{-1}\left(\frac{r_x}{\norm{\vec{r}}}\right) \quad &
-	\beta  & = \cos^{-1}\left(\frac{r_y}{\norm{\vec{r}}}\right) \quad &
-	\gamma & = \cos^{-1}\left(\frac{r_z}{\norm{\vec{r}}}\right)         \\
+	\alpha & = \cos^{-1}\left(\frac{r_x}{\norm*{\vec{r}}}\right) \quad &
+	\beta  & = \cos^{-1}\left(\frac{r_y}{\norm*{\vec{r}}}\right) \quad &
+	\gamma & = \cos^{-1}\left(\frac{r_z}{\norm*{\vec{r}}}\right)         \\
 	% Row 2: Numerical Substitution (Empty LHS aligns to the equals sign above)
-	       & = \cos^{-1}\left(\frac{5}{\sqrt{90}}\right)              &
-	       & = \cos^{-1}\left(\frac{7}{\sqrt{90}}\right)              &
-	       & = \cos^{-1}\left(\frac{4}{\sqrt{90}}\right)                \\
+	       & = \cos^{-1}\left(\frac{5}{\sqrt{90}}\right)               &
+	       & = \cos^{-1}\left(\frac{7}{\sqrt{90}}\right)               &
+	       & = \cos^{-1}\left(\frac{4}{\sqrt{90}}\right)                 \\
 	% Row 3: Final Answer
-	       & \approx 58.19^\circ                                      &
-	       & \approx 42.45^\circ                                      &
+	       & \approx 58.19^\circ                                       &
+	       & \approx 42.45^\circ                                       &
 	       & \approx 64.06^\circ
 \end{alignat*}
 \pagebreak
+
 % Question 2
-\subsection{Question 2}
+
+\section{Question 2}
+\label{question-2}
 \textbf{Problem}
-Prove that
+Prove that $\norm*{\vec{a}\cdot\vec{b}} \le \norm*{\vec{a}}\cdot\norm*{\vec{b}}$
+\\
+\\
+\textbf{Solution}
+By the geometric definition of the dot product, the angle $\theta$ between the
+vectors $\norm*{\vec{a}}$ and $\norm*{\vec{b}}$ is given by:
 \begin{align*}
-    \norm{\vec{a}.\vec{b}} \le \norm{\vec{a}}.\norm{\vec{b}}
+	\vec{a} \cdot \vec{b} & = \norm*{\vec{a}} \norm*{\vec{b}} \cos{\theta} \\
 \end{align*}
+We know that for any real angle $\theta$, the cosine function is bounded:
+\begin{align*}
+	-1 \le \cos{\theta} \le 1 \implies \norm*{\cos{\theta}} \le 1
+\end{align*}
+Substituting this inequality back into our original equation:
+\begin{align}
+	\nonumber \norm*{\vec{a} \cdot \vec{b}} & = \norm*{\vec{a} \cdot \vec{b}} \underbrace{\norm*{\cos{\theta}}}_{\le 1}
+	\nonumber \intertext{Therefore proving:}
+	\norm*{\vec{a} \cdot \vec{b}}           & \le \norm*{\vec{a}}\cdot\norm*{\vec{b}} \label{cauchy-schwartz}
+\end{align}
+\pagebreak
+
 % Question 3
+
+\section{Question 3}
+\label{question-3}
+\textbf{Problem}
+Prove $\norm*{\vec{a} + \vec{b}} \le \norm*{\vec{a}} + \norm*{\vec{b}}$
+\\
+\\
+\textbf{Solution}
+Since magnitudes are non-negative by definition, proving the inequality is
+equivalent to proving it for the squares of the magnitudes. Consider the square
+of the sum:
+\begin{align*}
+	\norm*{\vec{a} + \vec{b}}^{2} & = (\vec{a} + \vec{b}) \cdot (\vec{a} + \vec{b})                        \\
+	                              & = \vec{a} \cdot \vec{a} + 2(\vec{a} + \vec{b}) + \vec{b} \cdot \vec{b} \\
+	                              & = \norm*{\vec{a}}^{2} + 2(\vec{a} \cdot \vec{b}) + \norm*{\vec{b}}     \\
+\end{align*}
+From (\ref{cauchy-schwartz})
+(\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{Cauchy-Schwartz Inequality}),
+we established that
+\begin{align*}
+	\vec{a} \cdot \vec{b} \le \norm*{\vec{a} \cdot \vec{b}} \le \norm*{\vec{a}}\norm*{\vec{b}}
+\end{align*}
+We substitute this upper bound into the equation:
+\begin{align*}
+	\norm*{\vec{a} + \vec{b}}^2 & \le \norm*{\vec{a}}^2 + 2\norm*{\vec{a}}\norm*{\vec{b}} + \norm*{\vec{b}}^2 \\
+	\intertext{Recognizing the right-hand side as a perfect expansion $(x+y)^{2}=x^{2} + 2xy + y^{2}$:}
+	\norm*{\vec{a} + \vec{b}}^2 & \le \left( \norm*{\vec{a}} + \norm*{\vec{b}} \right)^2
+\end{align*}
+Taking the square root of both sides, which is valid since magnitudes are
+non-negative:
+\begin{align}
+	\norm*{\vec{a} + \vec{b}} \le \norm*{\vec{a}} + \norm*{\vec{b}} \label{triangle-inequality}
+\end{align}
+
+\pagebreak
+
 % Question 4
+
+\section{Question 4}
+\textbf{Problem}
+Prove $\norm*{\vec{a} \times \vec{b}}^{2} = \norm*{\vec{a}}^{2}\norm*{\vec{b}}^{2} - (\vec{a}\cdot\vec{b})^{2}$
+\\
+\\
+\textbf{Solution}
+Magnitude of the vector-product of two vectors $\vec{a}$ and $\vec{b}$,
+separated by an angle $\theta$, is defined as:
+\begin{align}
+	\norm*{\vec{a} \times \vec{b}}                                     & = \norm*{\vec{a}} \norm*{\vec{b}} \sin{\theta} \label{cross-vector-product-magnitude-definition}     \\
+	\nonumber \intertext{Square both sides:}
+	\nonumber \norm*{\vec{a} \times \vec{b}}^{2}                       & = (\norm*{\vec{a}} \norm*{\vec{b}} \sin{\theta})^{2}                                                 \\
+	\nonumber                                                          & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \sin^{2}{\theta}
+	\nonumber \intertext{Since,}
+	\nonumber \cos^{2}{\theta} + \sin^{2}{\theta}                      & = 1                                                                                                  \\
+	\nonumber \sin^{2}{\theta}                                         & = 1 - \cos^{2}{\theta}
+	\nonumber \intertext{By substituting that to our original equality's right-hand side, we get:}
+	\nonumber \norm*{\vec{a} \times \vec{b}}^{2}                       & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} (1 - \cos^{2}{\theta})
+	\nonumber \intertext{Then, by distributing $\norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2}$, we get:}
+	\nonumber                                                          & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} - \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \cos^{2}{\theta}
+	\nonumber \intertext{Observe that,}
+	\nonumber \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \cos^{2}{\theta} & = (\vec{a} \cdot \vec{b})^{2}
+	\nonumber \intertext{Thus, by substituting that, we complete our proof:}
+    \norm*{\vec{a} \times \vec{b}}                                     & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} - (\vec{a} \cdot \vec{b})^{2}
+\end{align}
+
+\pagebreak
+
 % Question 5
+
+\section{Question 5}
+\textbf{Problem}
+Let vectors $\vec{u}_{1} = (1,0,0)$, $\vec{u}_{2} = (1,1,0)$, and
+$\vec{u}_{3} = (1,1,1)$ form a basis for the vector space $\mathbb{R}^{3}$. Show
+that these vectors are linearly independent and express vector
+$\vec{a} = (3,-4,8)$ as a linear combination of them.
+\\
+\\
+\textbf{Solution}
 
 
 \end{document}

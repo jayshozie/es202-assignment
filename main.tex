@@ -1,9 +1,14 @@
 \documentclass{article}
-\usepackage{amsmath, amssymb, physics}
+\usepackage{amsmath, amssymb, physics, hyperref}
 \author{Emir Baha Yıldırım\\ID: 2675619}
 \title{ES202 - Assignment}
 \date{PLACHOLDER}
-
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
 \begin{document}
 \maketitle
 
@@ -12,32 +17,68 @@
 \tableofcontents
 \pagebreak
 
+\section{Introduction}
+
+% I hope the instructor allows us to use LaTeX, I really don't want to write
+% this shit out.
+
+These are my solutions to the assignment given in the course ES202.
+\\
+\subsection{AI Policy of This Paper}
+Large-Language-Model's (LLM) are only used in the formatting of this file. At no
+point, LLM's are used to solve the questions in the assignment, unlike other
+students taking the course who like to ask the help of LLMs even during the
+examinations. The reason this is written in LaTeX rather than by hand, is only
+because I have no time to do it by hand, and wanted to improve my LaTeX skills.
+The git commit history can be found in the GitHub repository \\
+\href{https://github.com/jayshozie/es202-assignment}{jayshozie/es202-assignment},
+also as a proof of the fact that this entire document was written by hand.
+\pagebreak
+
 % Question 1
 
-\section{Q1}
-Question: An Airplane is monitored at the location illustrated below with
-respect to the airport, find the directional angles of the plane.
+\section{Question 1}
+\textbf{Problem}
+An airplane is monitored at coordinates $(5, 7, 4)$ relative to the airport
+(South, East, Up). Find the directional angles of the plane.
 \\
+\\
+\textbf{Solution:}
+Let the position vector of the plane be $\vec{r}$. We define the axes such that
+$x=\text{South}$, $y=\text{East}$, and $z=\text{Up}$.
 
-Solution:
-
-We know that the coordinates of the planes is $5$ units $South$, $7$ units
-$East$, and $4$ units $Up$.
-
-Let $South, East\text{, and }Up$ be represented by the Cartesian Coordinates
-$x, y\text{, and }z$, respectively.
-
-Let $\alpha, \beta \text{, and } \gamma$ be the angles between the plane and the
-axes $South, East\text{, and } Up$, respectively.
-
-\begin{align}
-    \alpha = \cos^{-1}{\frac{}{}}
-\end{align}
-
-
-
-
+\begin{align*}
+	% define the vector of the airplane
+	\vec{r}        & = 5\hat{i} + 7\hat{j} + 4\hat{k} \\
+	\norm{\vec{r}} & = \sqrt{5^{2} + 7^{2} + 4^{2}}   \\
+	               & = \sqrt{25 + 49 + 16}            \\
+	               & = \sqrt{90}                      \\
+	               & \approx 9.4868                   \\
+\end{align*}
+The directional angles $\alpha, \beta, \gamma$ are given by the direction
+cosines:
+\begin{alignat*}{3}
+	% Row 1: Symbolic Formulas
+	\alpha & = \cos^{-1}\left(\frac{r_x}{\norm{\vec{r}}}\right) \quad &
+	\beta  & = \cos^{-1}\left(\frac{r_y}{\norm{\vec{r}}}\right) \quad &
+	\gamma & = \cos^{-1}\left(\frac{r_z}{\norm{\vec{r}}}\right)         \\
+	% Row 2: Numerical Substitution (Empty LHS aligns to the equals sign above)
+	       & = \cos^{-1}\left(\frac{5}{\sqrt{90}}\right)              &
+	       & = \cos^{-1}\left(\frac{7}{\sqrt{90}}\right)              &
+	       & = \cos^{-1}\left(\frac{4}{\sqrt{90}}\right)                \\
+	% Row 3: Final Answer
+	       & \approx 58.19^\circ                                      &
+	       & \approx 42.45^\circ                                      &
+	       & \approx 64.06^\circ
+\end{alignat*}
+\pagebreak
 % Question 2
+\subsection{Question 2}
+\textbf{Problem}
+Prove that
+\begin{align*}
+    \norm{\vec{a}.\vec{b}} \le \norm{\vec{a}}.\norm{\vec{b}}
+\end{align*}
 % Question 3
 % Question 4
 % Question 5

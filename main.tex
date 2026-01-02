@@ -175,7 +175,7 @@ separated by an angle $\theta$, is defined as:
 	\nonumber \intertext{Then, by distributing $\norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2}$, we get:}
 	\nonumber                                                          & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} - \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \cos^{2}{\theta}
 	\nonumber \intertext{Observe that,}
-	\nonumber \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \cos^{2}{\theta} & = (\vec{a} \cdot \vec{b})^{2}
+	\nonumber \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} \cos^{2}{\theta} & = (\norm*{\vec{a}}\norm*{\vec{b}}\sin{\theta})^{2} = (\vec{a} \cdot \vec{b})^{2}
 	\nonumber \intertext{Thus, by substituting that, we complete our proof:}
 	\norm*{\vec{a} \times \vec{b}}^{2}                                 & = \norm*{\vec{a}}^{2} \norm*{\vec{b}}^{2} - (\vec{a} \cdot \vec{b})^{2}
 \end{align}
@@ -750,13 +750,209 @@ The orthonormal set is $\{ \vec{e}_{1}, \vec{e}_{2}, \vec{e}_{3} \}$, where
 	\left(
 	\frac{1}{\sqrt{2}}, 0, \frac{1}{\sqrt{2}}
 	\right), \quad
-	\vec{e}_{2} = 
+	\vec{e}_{2} =
 	\left(
-    \frac{1}{\sqrt{6}}, \frac{2}{\sqrt{6}}, \frac{1}{\sqrt{6}}
+	\frac{1}{\sqrt{6}}, \frac{2}{\sqrt{6}}, \frac{1}{\sqrt{6}}
 	\right), \quad
-    \vec{e}_{3} = 
+	\vec{e}_{3} =
 	\left(
-    \frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}
+	\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}
 	\right)
+\]
+
+\pagebreak
+
+% Question 12
+
+\section{Question 12}
+\textbf{Problem}
+\\
+\textbf{i)}
+Given the force field $\vec{f} = (y+z)\hat{i} + y\hat{j} +4x^{2}y\hat{k}$, is
+the field conservative?
+\\
+\textbf{ii)}
+For $A\vec{x} = \vec{b}$, find the values of the real numbers "a and
+c" for which the following system of equations has;
+\\
+a) No Solution
+\\
+b) Unique Solution
+\\
+c) Parametric Solution
+\\
+d) Write the ranks of matrices $[A]$ and $[A|\vec{b}]$ for parts a, b, and c.
+\\
+\begin{align*}
+	A =
+	\begin{bmatrix}
+		0 & 1 & 1 \\
+		1 & 0 & a \\
+		1 & 1 & 2
+	\end{bmatrix}
+	\text{, and }
+	\vec{b} =
+	\begin{bmatrix}
+		c \\
+		1 \\
+		2
+	\end{bmatrix}
+\end{align*}
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{i) Is the force field conservative?}
+\\
+\\
+A vector field $\vec{f}$ is conservative if $\nabla \times \vec{f} = \vec{0}$.
+So, let us calculate the curl of that field:
+\[
+	\nabla \times \vec{f} = \begin{vmatrix}
+		\hat{i}                     & \hat{j}                     & \hat{k}                     \\
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial x} & \frac{\partial}{\partial x} \\
+		(y+z)                       & y                           & 4x^{2}y
+	\end{vmatrix}
+\]
+Expanding the determinant, we get:
+\begin{align*}
+	\text{$\hat{i}$-Component:} \quad & \frac{\partial}{\partial y}(4x^{2}y) - \frac{\partial}{\partial z}(y) = 4x^{2} - 0 = 4x^{2} \\
+	\text{$\hat{j}$-Component:} \quad & \frac{\partial}{\partial z}(y+z) - \frac{\partial}{\partial x}(4x^{2}y) = 1 - 8xy           \\
+	\text{$\hat{k}$-Component:} \quad & \frac{\partial}{\partial x}(y) - \frac{\partial}{\partial y}(y-z) = 0 - 1 = -1              \\
+\end{align*}
+The result is:
+\[
+	\nabla \times \vec{f} = (4x^{2})\hat{i} + (1-8xy)\hat{j} - \hat{k} \neq \vec{0}
+\]
+Since the curl of $\vec{f}$ is not the zero vector, the force field is \textbf{not conservative}.
+\\
+\\
+\textbf{ii) System of Equations Analysis}
+\\
+\\
+We perform Gaussian Elimination on the augmented matrix $[A|\vec{b}]$ to find
+the \textbf{Row Echelon Form}.
+\\
+\\
+\textbf{Step 1. Row Reduction}
+\[
+	[A|\vec{b}] =
+	\left[
+		\begin{array}{ccc|c}
+			0 & 1 & 1 & c \\
+			1 & 0 & a & 1 \\
+			1 & 1 & 2 & 2
+		\end{array}
+		\right]
+\]
+Swap $R_{1}$ and $R_{2}$ to get a pivot in the first column:
+\[
+	\xrightarrow{R_{1} \leftrightarrow R_{2}}
+	\left[
+		\begin{array}{ccc|c}
+			1 & 0 & a & 1 \\
+			0 & 1 & 1 & c \\
+			1 & 1 & 2 & 2
+		\end{array}
+		\right]
+\]
+Eliminate the pivot in $R_{3}$ ($R_{3} \to R_{3} - R_{1}$):
+\[
+	\xrightarrow{R_{3} - R_{1}}
+	\left[
+		\begin{array}{ccc|c}
+			1 & 0 & a   & 1 \\
+			0 & 1 & 1   & c \\
+			0 & 1 & 2-a & 1
+		\end{array}
+		\right]
+\]
+Eliminate the entry in $R_{3}$ in column 2 ($R_{3} \to R_{3} - R_{2}$):
+\[
+	\xrightarrow{R_{3} - R_{2}}
+	\left[
+		\begin{array}{ccc|c}
+			1 & 0 & a   & 1   \\
+			0 & 1 & 1   & c   \\
+			0 & 0 & 1-a & 1-c
+		\end{array}
+		\right]
+\]
+The behavior of the system depends entirely on the pivot term $(1-a)$ and the
+result term $(1-c)$.
+\\
+\\
+\textbf{Analysis of Cases:}
+\\
+\\
+\textbf{a) No Solution}
+For this system to be inconsistent, we need a row of the form
+$[0 \ 0 \ 0 \ | \ k]$ where $k \neq 0$.
+\[
+	1-a = 0 \implies a = 1, \quad \text{and} \quad 1-c \neq 0 \implies c \neq 1
+\]
+\textbf{Ranks:} $r[A] = 2$, $r[A|\vec{b}] = 3$.
+\\
+\\
+\textbf{b) Unique Solution}
+For a unique solution, we need full rank (3 pivots), meaning the term $(1-a)$ cannot be zero.
+\[
+	1-a \neq 0 \implies a \neq 1, \quad c \in \mathbb{R} \text{ ($c$ can be any real number)}
+\]
+\textbf{Ranks:} $r[A] = 3$, $r[A|\vec{b}] = 3$.
+\\
+\\
+\textbf{c) Parametric Solution}
+For infinite solutions, we need a free variable, meaning the last row must be entirely zero $[0 \ 0 \ 0 \ | \ 0]$.
+\[
+	1-a = 0 \implies a = 1, \quad \text{and} \quad 1-c = 0 \implies c = 1
+\]
+\textbf{Ranks:} $r[A] = 2$, $r[A|\vec{b}] = 2$.
+
+\pagebreak
+
+% Question 13
+
+\section{Question 13}
+\textbf{Problem}
+Compute $A^{m}$ and use this result to compute the indicated power of the matrix
+A.
+\[
+	A =
+	\begin{bmatrix}
+		-2 & 2  & -1 \\
+		2  & 1  & -2 \\
+		-3 & -3 & 0
+	\end{bmatrix}: m = 5
+\]
+\\
+\\
+\textbf{Solution}
+We diagonalize the matrix as $A = PDP^{-1}$, which implies $A^5 = P D^5 P^{-1}$.
+\\
+\\
+\textbf{Part 1. Find the Eigenvalues}
+\\
+\\
+The characteristic equation is $\det(A - \lambda I) = 0$.
+\begin{align*}
+	\begin{vmatrix} -2-\lambda & 2 & -1 \\ 2 & 1-\lambda & -2 \\ -3 & -6 & -\lambda \end{vmatrix} & = 0                                                                                                                 \\
+        & = (-2 -\lambda)[(1-\lambda)(-\lambda) - (-2)(-6)] \\
+        & \ \ \ - (2)[(2)(-\lambda) - (-2)(-3)] \\
+        & \ \ \ + (-1)[(2)(-6) - (1 - \lambda)(-3)] \\
+        & = -(\lambda - 5)(\lambda + 3)^2 = 0
+\end{align*}
+The eigenvalues are $\lambda_{1} = 5$ and $\lambda_{2, 3} = -3_{(2)}$ (with algebraic
+multiplicity 2).
+\\
+\\
+\textbf{Step 2. Find Eigenvectors}
+\\
+\\
+\textbf{Case 1. $\lambda = 5$}
+Solve $(A - 5I)\vec{v} = \vec{0}$:
+\[
+    \begin{bmatrix} -7 & 2 & -1 \\ 2 & -4 & -2 \\ -3 & -6 & -5 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \vec{0}
 \]
 \end{document}

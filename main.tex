@@ -14,7 +14,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 \documentclass{article}
-\usepackage{amsmath, amssymb, physics, hyperref}
+\usepackage{amsmath, amssymb, physics, hyperref, tikz}
 \author{Emir Baha Yıldırım\\ID: 2675619}
 \title{ES202 - Assignment Solutions}
 \date{05/01/2026}
@@ -923,7 +923,7 @@ A.
 	\begin{bmatrix}
 		-2 & 2  & -1 \\
 		2  & 1  & -2 \\
-		-3 & -3 & 0
+		-3 & -6 & 0
 	\end{bmatrix}: m = 5
 \]
 \\
@@ -932,27 +932,589 @@ A.
 We diagonalize the matrix as $A = PDP^{-1}$, which implies $A^5 = P D^5 P^{-1}$.
 \\
 \\
-\textbf{Part 1. Find the Eigenvalues}
+\textbf{Step 1. Find the Eigenvalues}
 \\
 \\
-The characteristic equation is $\det(A - \lambda I) = 0$.
+The characteristic equation is:
+\[
+	\det(A-\lambda I) =
+	\begin{bmatrix}
+		-2-\lambda & 2         & -1       \\
+		2          & 1-\lambda & -2       \\
+		-3         & -6        & -\lambda
+	\end{bmatrix} = 0
+\]
+Expanding along the first row:
 \begin{align*}
-	\begin{vmatrix} -2-\lambda & 2 & -1 \\ 2 & 1-\lambda & -2 \\ -3 & -6 & -\lambda \end{vmatrix} & = 0                                                                                                                 \\
-        & = (-2 -\lambda)[(1-\lambda)(-\lambda) - (-2)(-6)] \\
-        & \ \ \ - (2)[(2)(-\lambda) - (-2)(-3)] \\
-        & \ \ \ + (-1)[(2)(-6) - (1 - \lambda)(-3)] \\
-        & = -(\lambda - 5)(\lambda + 3)^2 = 0
+	 & = (-2-\lambda) \left[ (1-\lambda)(-\lambda) - (-2)(-6) \right] - 2 \left[ 2(-\lambda) - (-2)(-3) \right] + (-1) \left[ 2(-6) - (1-\lambda)(-3) \right] \\
+	 & = -(2+\lambda) \left[ -\lambda + \lambda^{2} - 12 \right] - 2 \left[ -2\lambda - 6 \right] - 1 \left[ -12 + 3 - 3\lambda \right]                       \\
+	 & = -(2+\lambda)(\lambda^{2} - \lambda - 12) + 4\lambda + 12 + 9 + 3\lambda                                                                              \\
+	 & = - (2\lambda^{2} - 2\lambda - 24 + \lambda^{3} - \lambda^{2} - 12\lambda) + 7\lambda + 21                                                             \\
+	 & = - (\lambda^{3} + \lambda^{2} - 14\lambda - 24) + 7\lambda + 21                                                                                       \\
+	 & = -\lambda^{3} - \lambda^{2} + 14\lambda + 24 + 7\lambda + 21                                                                                          \\
+	 & = -\lambda^{3} - \lambda^{2} + 21\lambda + 45 = 0
 \end{align*}
-The eigenvalues are $\lambda_{1} = 5$ and $\lambda_{2, 3} = -3_{(2)}$ (with algebraic
-multiplicity 2).
+Multiplying by $-1$, we solve $\lambda^3 + \lambda^2 - 21\lambda - 45 = 0$.
+Testing integer roots (factors of 45), we find $\lambda = 5$:
+\[
+	(5)^3 + (5)^2 - 21(5) - 45 = 125 + 25 - 105 - 45 = 150 - 150 = 0
+\]
+Thus $(\lambda - 5)$ is a factor. Performing polynomial division gives
+$(\lambda - 5)(\lambda + 3)^{2} = 0$. The eigenvalues are $\lambda_{1} = 5$ and
+$\lambda_{2,3} = -3$.
 \\
 \\
 \textbf{Step 2. Find Eigenvectors}
 \\
 \\
 \textbf{Case 1. $\lambda = 5$}
+\\
+\\
 Solve $(A - 5I)\vec{v} = \vec{0}$:
 \[
-    \begin{bmatrix} -7 & 2 & -1 \\ 2 & -4 & -2 \\ -3 & -6 & -5 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \vec{0}
+	\begin{bmatrix} -7 & 2 & -1 \\ 2 & -4 & -2 \\ -3 & -6 & -5 \end{bmatrix} \xrightarrow{R_2 \leftrightarrow R_1}
+	\begin{bmatrix} 2 & -4 & -2 \\ -7 & 2 & -1 \\ -3 & -6 & -5 \end{bmatrix} \xrightarrow{R_1/2}
+	\begin{bmatrix} 1 & -2 & -1 \\ -7 & 2 & -1 \\ -3 & -6 & -5 \end{bmatrix}
 \]
+Eliminate $R_2$ ($R_2 + 7R_1$) and $R_3$ ($R_3 + 3R_1$):
+\[
+	\begin{bmatrix} 1 & -2 & -1 \\ 0 & -12 & -8 \\ 0 & -12 & -8 \end{bmatrix} \xrightarrow{-R_2/4}
+	\begin{bmatrix} 1 & -2 & -1 \\ 0 & 3 & 2 \\ 0 & 0 & 0 \end{bmatrix}
+\]
+From $R_2$: $3y + 2z = 0 \implies y = -\frac{2}{3}z$. Let $z = -3$, then $y = 2$.
+From $R_1$: $x - 2y - z = 0 \implies x = 2(2) + (-3) = 1$.
+\[
+	\vec{v}_1 = \begin{bmatrix} 1 \\ 2 \\ -3 \end{bmatrix}
+\]
+\\
+\\
+\textbf{Case 2. $\lambda = -3$}
+Solve $(A + 3I)\vec{v} = \vec{0}$:
+\[
+	\begin{bmatrix} 1 & 2 & -1 \\ 2 & 4 & -2 \\ -3 & -6 & 3 \end{bmatrix} \xrightarrow{R_2 - 2R_1, R_3 + 3R_1}
+	\begin{bmatrix} 1 & 2 & -1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+\]
+Equation: $x + 2y - z = 0 \implies x = -2y + z$.
+Two free variables ($y, z$). \\
+1. Let $y=1, z=0 \implies x = -2$.
+\begin{align*}
+	\implies \vec{v}_2 = \begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}
+\end{align*}
+2. Let $y=0, z=1 \implies x = 1$.
+\begin{align*}
+	\implies \vec{v}_3 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}
+\end{align*}
+\\
+\\
+\textbf{Step 3. Construct $P$, $D$, and $P^{-1}$}
+\[
+	P = \begin{bmatrix} 1 & -2 & 1 \\ 2 & 1 & 0 \\ -3 & 0 & 1 \end{bmatrix}, \quad D = \begin{bmatrix} 5 & 0 & 0 \\ 0 & -3 & 0 \\ 0 & 0 & -3 \end{bmatrix}
+\]
+First, calculate $\det(P)$:
+\[
+	\det(P) = 1(1-0) - (-2)(2-0) + 1(0 - (-3)) = 1 + 4 + 3 = 8
+\]
+Now, find the Cofactor Matrix $C$:
+\begin{align*}
+	C_{11} & = +(1)      & C_{12} & = -(2)          & C_{13} & = +(3)          \\
+	C_{21} & = -(-2) = 2 & C_{22} & = +(1-(-3)) = 4 & C_{23} & = -(0-6) = 6    \\
+	C_{31} & = +(-1)     & C_{32} & = -(0-2) = 2    & C_{33} & = +(1-(-4)) = 5
+\end{align*}
+\[
+	C = \begin{bmatrix} 1 & -2 & 3 \\ 2 & 4 & 6 \\ -1 & 2 & 5 \end{bmatrix} \implies \text{adj}(P) = C^T = \begin{bmatrix} 1 & 2 & -1 \\ -2 & 4 & 2 \\ 3 & 6 & 5 \end{bmatrix}
+\]
+\[
+	P^{-1} = \frac{1}{8} \begin{bmatrix} 1 & 2 & -1 \\ -2 & 4 & 2 \\ 3 & 6 & 5 \end{bmatrix}
+\]
+\textbf{Step 4. Compute $A^{5}$}
+We calculate $A^{5}$ using the formula $A^{5} = P D^{5} P^{-1}$.
+First, compute the diagonal power matrix $D^{5}$:
+\[
+	D^{5} =
+	\begin{bmatrix}
+		5^5 & 0      & 0      \\
+		0   & (-3)^5 & 0      \\
+		0   & 0      & (-3)^5
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		3125 & 0    & 0    \\
+		0    & -243 & 0    \\
+		0    & 0    & -243
+	\end{bmatrix}
+\]
+Next, we calculate:
+\begin{align*}
+	PD^{5}P^{-1} & =             \\
+	             & = \frac{1}{8}
+	\begin{bmatrix}
+		1  & -2 & 1 \\
+		2  & 1  & 0 \\
+		-3 & 0  & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		3125 & 0    & 0 \\
+		0    & -243 & 0
+		\\ 0 & 0 & -243
+	\end{bmatrix}
+	\begin{bmatrix}
+		1  & 2 & -1 \\
+		-2 & 4 & 2  \\
+		3  & 6 & 5
+	\end{bmatrix}               \\
+	             & = \frac{1}{8}
+	\begin{bmatrix}
+		(3125)       & ((-2)(-243)) & (-243) \\
+		((2)(3125))  & (-243)       & (0)    \\
+		((-3)(3125)) & (0)          & (-243)
+	\end{bmatrix}
+	\begin{bmatrix}
+		1  & 2 & -1 \\
+		-2 & 4 & 2  \\
+		3  & 6 & 5
+	\end{bmatrix}               \\
+	             & = \frac{1}{8}
+	\begin{bmatrix}
+		3125  & 486  & -243 \\
+		6250  & -243 & 0    \\
+		-9375 & 0    & -243
+	\end{bmatrix}
+	\begin{bmatrix}
+		1  & 2 & -1 \\
+		-2 & 4 & 2  \\
+		3  & 6 & 5
+	\end{bmatrix}
+\end{align*}
+\\
+\\
+\textbf{Calculation of the final matrix:}
+\\
+\begin{align*}
+	c_{11} & = (3125)(1) + (486)(-2) + (-243)(3) = 3125 - 972 - 729 = 1424    \\
+	c_{12} & = (3125)(2) + (486)(4) + (-243)(6) = 6250 + 1944 - 1458 = 6736   \\
+	c_{13} & = (3125)(-1) + (486)(2) + (-243)(5) = -3125 + 972 - 1215 = -3368 \\
+	c_{21} & = (6250)(1) + (-243)(-2) + (0)(3) = 6250 + 486 + 0 = 6736        \\
+	c_{22} & = (6250)(2) + (-243)(4) + (0)(6) = 12500 - 972 + 0 = 11528       \\
+	c_{23} & = (6250)(-1) + (-243)(2) + (0)(5) = -6250 - 486 + 0 = -6736      \\
+	c_{31} & = (-9375)(1) + (0)(-2) + (-243)(3) = -9375 - 729 = -10104        \\
+	c_{32} & = (-9375)(2) + (0)(4) + (-243)(6) = -18750 - 1458 = -20208       \\
+	c_{33} & = (-9375)(-1) + (0)(2) + (-243)(5) = 9375 - 1215 = 8160
+\end{align*}
+\\
+\\
+Substituting these values into the matrix, and dividing by $8$ gives us the
+final matrix:
+\[
+	A^5 = \frac{1}{8}
+	\begin{bmatrix}
+		c_{11} & c_{12} & c_{13} \\
+		c_{21} & c_{22} & c_{23} \\
+		c_{31} & c_{32} & c_{33}
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		178   & 842   & -421 \\
+		842   & 1441  & -842 \\
+		-1263 & -2526 & 1020
+	\end{bmatrix}
+\]
+
+\pagebreak
+
+% Question 14
+
+\section{Question 14}
+\textbf{Problem}
+Use the properties of diagonalization of matrices to identify the given conic
+section:
+\[
+	16x^{2} + 24xy + 9y^{2} - 3x + 4y = 0
+\]
+\\
+\\
+\textbf{Solution}
+The quadratic equation can be written in the matrix form
+\[
+	\vec{x}^T A \vec{x} + K\vec{x} = 0
+\]
+where the matrix $A$ represents the quadratic coefficients:
+\[
+	A =
+	\begin{bmatrix}
+		16 & 12 \\
+		12 & 9
+	\end{bmatrix}
+\]
+% \textit{(Note: The off-diagonal entries are half of the $xy$ coefficient, $24/2 = 12$).}
+\\
+\\
+\textbf{Step 1. Find Eigenvalues of A}
+We determine the type of conic section by inspecting the eigenvalues of $A$.
+\[
+	\det(A - \lambda I) = \begin{vmatrix} 16 - \lambda & 12 \\ 12 & 9 - \lambda \end{vmatrix} = 0
+\]
+\begin{align*}
+	(16 - \lambda)(9 - \lambda) - (12)(12)         & = 0 \\
+	(144 - 16\lambda - 9\lambda + \lambda^2) - 144 & = 0 \\
+	\lambda^2 - 25\lambda                          & = 0 \\
+	\lambda(\lambda - 25)                          & = 0
+\end{align*}
+The eigenvalues are $\lambda_1 = 25$ and $\lambda_2 = 0$.
+\\
+\\
+\textbf{Conclusion}
+Since one of the eigenvalues is zero ($\lambda_2 = 0$), the determinant of the
+quadratic form matrix is zero. This indicates that the conic section is a
+\textit{Parabola}.
+\\
+\\
+\textbf{Step 2. Verification via Rotation}
+To confirm the standard form, we diagonalize the quadratic part. The
+eigenvectors are found as follows:
+\\
+For $\lambda_1 = 25$:
+\[
+	\begin{bmatrix}
+		-9 & 12  \\
+		12 & -16
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\
+		y
+	\end{bmatrix}
+	= \vec{0} \implies -3x + 4y = 0 \implies \vec{v}_1
+	=
+	\begin{bmatrix}
+		4 \\
+		3
+	\end{bmatrix}
+\]
+Normalized: $\vec{u}_1 =
+	\begin{bmatrix}
+		4/5 \\
+		3/5
+	\end{bmatrix}$.
+\\
+For $\lambda_2 = 0$:
+\[
+	\begin{bmatrix}
+		16 & 12 \\
+		12 & 9
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\
+		y
+	\end{bmatrix}
+	= \vec{0} \implies 4x + 3y = 0 \implies \vec{v}_2
+	=
+	\begin{bmatrix}
+		-3 \\
+		4
+	\end{bmatrix}
+\]
+Normalized: $\vec{u}_2 = \begin{bmatrix} -3/5 \\ 4/5 \end{bmatrix}$.
+\\
+The rotation matrix $P =
+	\begin{bmatrix}
+		4/5 & -3/5 \\
+		3/5 & 4/5
+	\end{bmatrix}$.
+Substituting coordinates $
+	\begin{bmatrix}
+		x \\
+		y
+	\end{bmatrix}
+	= P
+	\begin{bmatrix}
+		x' \\
+		y'
+	\end{bmatrix}$
+into the linear term $-3x + 4y$:
+\begin{align*}
+	-3x + 4y & =
+	\begin{bmatrix}
+		-3 & 4
+	\end{bmatrix}
+	P
+	\begin{bmatrix}
+		x' \\
+		y'
+	\end{bmatrix}                              \\
+	         & =
+	\begin{bmatrix}
+		-3 & 4
+	\end{bmatrix}
+	\begin{bmatrix}
+		0.8 & -0.6 \\
+		0.6 & 0.8
+	\end{bmatrix}
+	\begin{bmatrix}
+		x' \\
+		y'
+	\end{bmatrix}                              \\
+	         & = (-2.4 + 2.4)x' + (1.8 + 3.2)y' \\
+	         & = 0x' + 5y'
+\end{align*}
+The rotated equation is:
+\[
+	25(x')^2 + 0(y')^2 + 5y' = 0 \implies 25(x')^2 = -5y' \implies (x')^2 = -\frac{1}{5}y'
+\]
+This confirms the shape is a \textit{Parabola}.
+
+\pagebreak
+
+% Question 15
+
+\section{Question 15}
+\textbf{Problem}
+A quadratic form is given by
+\[
+	5x^{2} - 2xy + 5y^{2} = 24
+\]
+Identify the conic section and illustrate the graph for the orthogonal form.
+\\
+\\
+\textbf{Solution}
+The equation can be written in matrix form $\vec{x}^T A \vec{x} = 24$, where:
+\[
+	A =
+	\begin{bmatrix}
+		5  & -1 \\
+		-1 & 5
+	\end{bmatrix}
+\]
+\\
+\\
+\textbf{Step 1. Find Eigenvalues}
+We solve the characteristic equation:
+\begin{align*}
+	\det(A - \lambda I) =
+	\begin{vmatrix}
+		5 - \lambda & -1          \\
+		-1          & 5 - \lambda
+	\end{vmatrix} & = 0                                       \\
+	(5 - \lambda)^2 - (-1)(-1)   & = 0                              \\
+	(5 - \lambda)^2 - 1          & = 0                              \\
+	(5 - \lambda)^2              & = 1 \implies 5 - \lambda = \pm 1
+\end{align*}
+The eigenvalues are:
+\[
+	\lambda_1 = 5 - 1 = 4, \quad \lambda_2 = 5 + 1 = 6
+\]
+\\
+\textbf{Step 2. Identification}
+Since both eigenvalues ($\lambda_1=4, \lambda_2=6$) are positive, the conic
+section is an \textit{Ellipse}.
+\\
+\\
+\textbf{Step 3. Orthonormal Form}
+The equation in the new coordinate system $(x', y')$ defined by the eigenvectors
+is:
+\[
+	\lambda_1 (x')^2 + \lambda_2 (y')^2 = 24
+\]
+\[
+	4(x')^2 + 6(y')^2 = 24
+\]
+Dividing by 24 to reach the standard form of an ellipse:
+\[
+	\frac{(x')^2}{6} + \frac{(y')^2}{4} = 1
+\]
+Here, the semi-major axis is $a = \sqrt{6} \approx 2.45$ (along the $x'$ axis)
+and the semi-minor axis is $b = 2$ (along the $y'$ axis).
+\\
+\\
+\textbf{Step 4. Illustration}
+To find the orientation of the axes, we find the eigenvector for
+$\lambda_1 = 4$:
+\[
+	(A - 4I)\vec{v} =
+	\begin{bmatrix}
+		1  & -1 \\
+		-1 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\
+		y
+	\end{bmatrix}
+	= \vec{0} \implies x - y = 0 \implies x = y
+\]
+The principal axis $x'$ is along the vector $(1, 1)$, which is a $45^\circ$
+rotation from the standard $x$-axis.
+\begin{center}
+	\begin{tikzpicture}
+		% Draw Axes
+		\draw[->] (-3,0) -- (3,0) node[right] {$x'$};
+		\draw[->] (0,-3) -- (0,3) node[above] {$y'$};
+
+		% Draw Ellipse
+		\draw[thick, cyan] (0,0) ellipse (2.45cm and 2cm);
+
+		% Label intercepts
+		\filldraw (2.45,0) circle (2pt) node[anchor=north west] {$\sqrt{6}$};
+		\filldraw (-2.45,0) circle (2pt) node[anchor=north east] {$-\sqrt{6}$};
+		\filldraw (0,2) circle (2pt) node[anchor=south west] {$2$};
+		\filldraw (0,-2) circle (2pt) node[anchor=north west] {$-2$};
+
+		\node at (0,-3.5) {\textit{Figure: Graph of the orthonormal form } $\frac{(x')^2}{6} + \frac{(y')^2}{4} = 1$};
+	\end{tikzpicture}
+\end{center}
+
+\pagebreak
+
+% Question 16
+
+\section{Question 16}
+\textbf{Problem}
+Determine whether the given matrix $A$ is diagonalizable. \\
+If so, find the matrix $P$ that diagonalizes $A$ and the diagonal matrix $D$
+such that $D = P^{-1}AP$.
+\[
+	A =
+	\begin{bmatrix}
+		1            & 2 \\
+		-\frac{1}{2} & 1
+	\end{bmatrix}
+\]
+\\
+\\
+\textbf{Solution}
+\textbf{Step 1. Find Eigenvalues}
+We find the eigenvalues by solving the characteristic equation
+$\det(A - \lambda I) = 0$:
+\begin{align*}
+	\begin{vmatrix} 1 - \lambda & 2 \\ -1/2 & 1 - \lambda \end{vmatrix} & = 0 \\
+	(1 - \lambda)(1 - \lambda) - (2)\left(-\frac{1}{2}\right)           & = 0 \\
+	(1 - \lambda)^2 - (-1)                                              & = 0 \\
+	(1 - \lambda)^2 + 1                                                 & = 0
+\end{align*}
+Solving for $\lambda$:
+\begin{align*}
+	(1 - \lambda)^2 & = -1            \\
+	1 - \lambda     & = \pm \sqrt{-1} \\
+	1 - \lambda     & = \pm i         \\
+	\lambda         & = 1 \pm i
+\end{align*}
+The eigenvalues are $\lambda_1 = 1 + i$ and $\lambda_2 = 1 - i$.
+\\
+\\
+\textbf{Conclusion}
+Since the eigenvalues are complex (not real numbers), there are no corresponding
+eigenvectors with real components. Therefore, the matrix $A$ is
+\textit{not diagonalizable} over the field of real numbers $\mathbb{R}$.
+
+\pagebreak
+
+% Question 17
+
+\section{Question 17}
+\textbf{Problem}
+If $\rho(x,y)$ is the density of a wire (mass per unit length), then
+$m = \int_{C}{\rho(x,y)ds}$ is the mass of the wire.
+\begin{enumerate}
+    \item[i)] Find the mass of a wire having the shape of the semicircle $x=1+\cos t$, $y=\sin t$, $0 \le t \le \pi$, if the density at a point P is directly proportional to its distance from the y-axis.
+    \item[ii)] Find the coordinates of the center of mass $(\bar{x}, \bar{y})$.
+\end{enumerate}
+\textbf{Solution}
+\\
+\\
+\textbf{i) Find the Mass}
+The mass is given by the line integral $m = \int_{C}{\rho(x,y)ds}$.
+\\
+\\
+\textbf{1. Parameterization:}
+\[
+    \vec{r}(t) = (1 + \cos{t})\hat{i} + (\sin{t})\hat{j}, \quad 0 \le t \le \pi
+\]
+\\
+\\
+\textbf{2. Differential Element $ds$:}
+Calculate the derivatives:
+\[
+    \frac{dx}{dt} = -\sin{t}, \quad \frac{dy}{dt} = \cos{t}
+\]
+Calculate the magnitude:
+\[
+    ds = \sqrt{\left(-\sin{t}\right)^{2} + \left(\cos{t}\right)^{2}} \, dt = \sqrt{\sin^{2}{t} + \cos^{2}{t}} \, dt = 1 \, dt
+\]
+\\
+\\
+\textbf{3. Density Function:}
+The density is proportional to the distance from the y-axis ($|x|$). Since $x = 1 + \cos{t} \ge 0$ for the given domain:
+\[
+    \rho(x,y) = kx = k(1 + \cos{t})
+\]
+where $k$ is a constant of proportionality.
+\\
+\\
+\textbf{4. Integral for Mass:}
+\begin{align*}
+    m &= \int_{0}^{\pi}{k(1 + \cos t)(1)dt}\\
+      &= k \left[ t + \sin t \right]_{0}^{\pi} \\
+      &= k [(\pi + 0) - (0 + 0)] \\
+      &= k\pi
+\end{align*}
+\\
+\\
+\textbf{ii) Find Center of Mass}
+The coordinates are given by $\bar{x} = M_{y}/m$ and
+$\bar{y} = M_{x}/m$.
+\\
+\\
+\textbf{Calculate $M_{y}$ (Moment about y-axis):}
+\[
+    M_{y} = \int_{C}{x \rho(x,y)ds} = \int_{0}^{\pi}{(1 + \cos{t}) k(1 + \cos{t})dt}
+\]
+\[
+    M_{y} = k \int_{0}^{\pi}{(1 + \cos{t})^{2}dt} = k \int_{0}^{\pi}{(1 + 2\cos{t} + \cos^{2}{t})dt}
+\]
+Using the identity $\cos^{2}{t} = (1 + \cos{2t})/2$ :
+\begin{align*}
+    M_y &= k \int_{0}^{\pi}{\left( 1 + 2\cos{t} + \frac{1}{2} + \frac{1}{2}\cos{2t} \right)dt} \\
+        &= k \int_{0}^{\pi}{\left( \frac{3}{2} + 2\cos{t} + \frac{1}{2}\cos{2t} \right)dt} \\
+        &= k \left[\frac{3}{2}t + 2\sin{t} + \frac{1}{4}\sin{2t} \right]_{0}^{\pi} \\
+        &= k \left[\left(\frac{3\pi}{2} + 0 + 0\right) - 0 \right] = \frac{3\pi k}{2}
+\end{align*}
+\[
+    \bar{x} = \frac{M_y}{m} = \frac{3\pi k / 2}{k\pi} = \frac{3}{2}
+\]
+\\
+\\
+\textbf{Calculate $M_{x}$ (Moment about x-axis):}
+\[
+    M_{x} = \int_{C}{y \rho(x,y)ds} = \int_{0}^{\pi}{(\sin t) k(1 + \cos t)dt}
+\]
+\[
+    M_{x} = k \int_{0}^{\pi}{(\sin t + \sin t \cos t)dt}
+\]
+Using simple integration for $\sin{t}$ and $u$-substitution (or identity
+$\sin{2t}$) for $\sin{t} \cos{t}$:
+\begin{align*}
+    M_{x} &= k \left[ -\cos{t} + \frac{1}{2}\sin^{2}{t} \right]_{0}^{\pi} \\
+        &= k \left[ (-\cos{\pi} + 0) - (-\cos{0} + 0) \right] \\
+        &= k \left[ -(-1) - (-1) \right] = k(1 + 1) = 2k
+\end{align*}
+\[
+    \bar{y} = \frac{M_{x}}{m} = \frac{2k}{k\pi} = \frac{2}{\pi}
+\]
+\\
+\\
+\textbf{Answer: }
+The mass is $m = k\pi$, and the center of mass is located at
+$\left(3/2, 2/\pi\right)$.
+
+\pagebreak
+
+% Question 18
+
+\section{Question 18}
+\textbf{Problem}
+If $u = f(x,y)$ and $x = r\cos{\theta}, y = r\sin{\theta}$, show that Laplace's
+Equation
+\[
+
+\]
+\\
+\\
+\textbf{Solution}
 \end{document}

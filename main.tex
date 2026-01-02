@@ -14,7 +14,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 \documentclass{article}
-\usepackage{amsmath, amssymb, physics, hyperref, tikz}
+\usepackage{amsmath, amssymb, physics, hyperref, tikz, esint}
 \author{Emir Baha Yıldırım\\ID: 2675619}
 \title{ES202 - Assignment Solutions}
 \date{05/01/2026}
@@ -1412,8 +1412,8 @@ eigenvectors with real components. Therefore, the matrix $A$ is
 If $\rho(x,y)$ is the density of a wire (mass per unit length), then
 $m = \int_{C}{\rho(x,y)ds}$ is the mass of the wire.
 \begin{enumerate}
-    \item[i)] Find the mass of a wire having the shape of the semicircle $x=1+\cos t$, $y=\sin t$, $0 \le t \le \pi$, if the density at a point P is directly proportional to its distance from the y-axis.
-    \item[ii)] Find the coordinates of the center of mass $(\bar{x}, \bar{y})$.
+	\item[i)] Find the mass of a wire having the shape of the semicircle $x=1+\cos t$, $y=\sin t$, $0 \le t \le \pi$, if the density at a point P is directly proportional to its distance from the y-axis.
+	\item[ii)] Find the coordinates of the center of mass $(\bar{x}, \bar{y})$.
 \end{enumerate}
 \textbf{Solution}
 \\
@@ -1424,35 +1424,35 @@ The mass is given by the line integral $m = \int_{C}{\rho(x,y)ds}$.
 \\
 \textbf{1. Parameterization:}
 \[
-    \vec{r}(t) = (1 + \cos{t})\hat{i} + (\sin{t})\hat{j}, \quad 0 \le t \le \pi
+	\vec{r}(t) = (1 + \cos{t})\hat{i} + (\sin{t})\hat{j}, \quad 0 \le t \le \pi
 \]
 \\
 \\
 \textbf{2. Differential Element $ds$:}
 Calculate the derivatives:
 \[
-    \frac{dx}{dt} = -\sin{t}, \quad \frac{dy}{dt} = \cos{t}
+	\frac{dx}{dt} = -\sin{t}, \quad \frac{dy}{dt} = \cos{t}
 \]
 Calculate the magnitude:
 \[
-    ds = \sqrt{\left(-\sin{t}\right)^{2} + \left(\cos{t}\right)^{2}} \, dt = \sqrt{\sin^{2}{t} + \cos^{2}{t}} \, dt = 1 \, dt
+	ds = \sqrt{\left(-\sin{t}\right)^{2} + \left(\cos{t}\right)^{2}} \, dt = \sqrt{\sin^{2}{t} + \cos^{2}{t}} \, dt = 1 \, dt
 \]
 \\
 \\
 \textbf{3. Density Function:}
 The density is proportional to the distance from the y-axis ($|x|$). Since $x = 1 + \cos{t} \ge 0$ for the given domain:
 \[
-    \rho(x,y) = kx = k(1 + \cos{t})
+	\rho(x,y) = kx = k(1 + \cos{t})
 \]
 where $k$ is a constant of proportionality.
 \\
 \\
 \textbf{4. Integral for Mass:}
 \begin{align*}
-    m &= \int_{0}^{\pi}{k(1 + \cos t)(1)dt}\\
-      &= k \left[ t + \sin t \right]_{0}^{\pi} \\
-      &= k [(\pi + 0) - (0 + 0)] \\
-      &= k\pi
+	m & = \int_{0}^{\pi}{k(1 + \cos t)(1)dt}    \\
+	  & = k \left[ t + \sin t \right]_{0}^{\pi} \\
+	  & = k [(\pi + 0) - (0 + 0)]               \\
+	  & = k\pi
 \end{align*}
 \\
 \\
@@ -1463,39 +1463,39 @@ $\bar{y} = M_{x}/m$.
 \\
 \textbf{Calculate $M_{y}$ (Moment about y-axis):}
 \[
-    M_{y} = \int_{C}{x \rho(x,y)ds} = \int_{0}^{\pi}{(1 + \cos{t}) k(1 + \cos{t})dt}
+	M_{y} = \int_{C}{x \rho(x,y)ds} = \int_{0}^{\pi}{(1 + \cos{t}) k(1 + \cos{t})dt}
 \]
 \[
-    M_{y} = k \int_{0}^{\pi}{(1 + \cos{t})^{2}dt} = k \int_{0}^{\pi}{(1 + 2\cos{t} + \cos^{2}{t})dt}
+	M_{y} = k \int_{0}^{\pi}{(1 + \cos{t})^{2}dt} = k \int_{0}^{\pi}{(1 + 2\cos{t} + \cos^{2}{t})dt}
 \]
 Using the identity $\cos^{2}{t} = (1 + \cos{2t})/2$ :
 \begin{align*}
-    M_y &= k \int_{0}^{\pi}{\left( 1 + 2\cos{t} + \frac{1}{2} + \frac{1}{2}\cos{2t} \right)dt} \\
-        &= k \int_{0}^{\pi}{\left( \frac{3}{2} + 2\cos{t} + \frac{1}{2}\cos{2t} \right)dt} \\
-        &= k \left[\frac{3}{2}t + 2\sin{t} + \frac{1}{4}\sin{2t} \right]_{0}^{\pi} \\
-        &= k \left[\left(\frac{3\pi}{2} + 0 + 0\right) - 0 \right] = \frac{3\pi k}{2}
+	M_y & = k \int_{0}^{\pi}{\left( 1 + 2\cos{t} + \frac{1}{2} + \frac{1}{2}\cos{2t} \right)dt} \\
+	    & = k \int_{0}^{\pi}{\left( \frac{3}{2} + 2\cos{t} + \frac{1}{2}\cos{2t} \right)dt}     \\
+	    & = k \left[\frac{3}{2}t + 2\sin{t} + \frac{1}{4}\sin{2t} \right]_{0}^{\pi}             \\
+	    & = k \left[\left(\frac{3\pi}{2} + 0 + 0\right) - 0 \right] = \frac{3\pi k}{2}
 \end{align*}
 \[
-    \bar{x} = \frac{M_y}{m} = \frac{3\pi k / 2}{k\pi} = \frac{3}{2}
+	\bar{x} = \frac{M_y}{m} = \frac{3\pi k / 2}{k\pi} = \frac{3}{2}
 \]
 \\
 \\
 \textbf{Calculate $M_{x}$ (Moment about x-axis):}
 \[
-    M_{x} = \int_{C}{y \rho(x,y)ds} = \int_{0}^{\pi}{(\sin t) k(1 + \cos t)dt}
+	M_{x} = \int_{C}{y \rho(x,y)ds} = \int_{0}^{\pi}{(\sin t) k(1 + \cos t)dt}
 \]
 \[
-    M_{x} = k \int_{0}^{\pi}{(\sin t + \sin t \cos t)dt}
+	M_{x} = k \int_{0}^{\pi}{(\sin t + \sin t \cos t)dt}
 \]
 Using simple integration for $\sin{t}$ and $u$-substitution (or identity
 $\sin{2t}$) for $\sin{t} \cos{t}$:
 \begin{align*}
-    M_{x} &= k \left[ -\cos{t} + \frac{1}{2}\sin^{2}{t} \right]_{0}^{\pi} \\
-        &= k \left[ (-\cos{\pi} + 0) - (-\cos{0} + 0) \right] \\
-        &= k \left[ -(-1) - (-1) \right] = k(1 + 1) = 2k
+	M_{x} & = k \left[ -\cos{t} + \frac{1}{2}\sin^{2}{t} \right]_{0}^{\pi} \\
+	      & = k \left[ (-\cos{\pi} + 0) - (-\cos{0} + 0) \right]           \\
+	      & = k \left[ -(-1) - (-1) \right] = k(1 + 1) = 2k
 \end{align*}
 \[
-    \bar{y} = \frac{M_{x}}{m} = \frac{2k}{k\pi} = \frac{2}{\pi}
+	\bar{y} = \frac{M_{x}}{m} = \frac{2k}{k\pi} = \frac{2}{\pi}
 \]
 \\
 \\
@@ -1512,9 +1512,1176 @@ $\left(3/2, 2/\pi\right)$.
 If $u = f(x,y)$ and $x = r\cos{\theta}, y = r\sin{\theta}$, show that Laplace's
 Equation
 \[
-
+	\frac{\partial^{2}u}{\partial r^{2}}+\frac{1}{r}\frac{\partial u}{\partial r}+\frac{1}{r^{2}}\frac{\partial^{2}u}{\partial\theta^{2}}=0
 \]
 \\
 \\
 \textbf{Solution}
+We perform the change of variables using the Chain Rule.
+Given:
+\[
+	x = r\cos\theta, \quad y = r\sin\theta \implies r = \sqrt{x^2+y^2}, \quad \theta = \arctan\left(\frac{y}{x}\right)
+\]
+\\
+\\
+\textbf{Step 1. First Partial Derivatives of Coordinates}
+We calculate the derivatives of $r$ and $\theta$ with respect to $x$ and $y$:
+\begin{align*}
+	\frac{\partial r}{\partial x}      & = \frac{x}{\sqrt{x^2+y^2}} = \frac{r\cos\theta}{r} = \cos\theta                           & \frac{\partial r}{\partial y}      & = \sin\theta           \\
+	\frac{\partial \theta}{\partial x} & = \frac{1}{1+(y/x)^2}\left(-\frac{y}{x^2}\right) = -\frac{y}{r^2} = -\frac{\sin\theta}{r} & \frac{\partial \theta}{\partial y} & = \frac{\cos\theta}{r}
+\end{align*}
+\\
+\\
+\textbf{Step 2. First Partial Derivative of $u$}
+Using the chain rule: $\frac{\partial u}{\partial x} = \frac{\partial u}{\partial r}\frac{\partial r}{\partial x} + \frac{\partial u}{\partial \theta}\frac{\partial \theta}{\partial x}$:
+\begin{equation} \label{ux}
+	u_x = (\cos\theta)u_r - \left(\frac{\sin\theta}{r}\right)u_\theta
+\end{equation}
+Similarly for $y$:
+\begin{equation} \label{uy}
+	u_y = (\sin\theta)u_r + \left(\frac{\cos\theta}{r}\right)u_\theta
+\end{equation}
+\\
+\\
+\textbf{Step 3. Second Partial Derivative $u_{xx}$}
+We apply the operator $\frac{\partial}{\partial x} = \cos\theta \frac{\partial}{\partial r} - \frac{\sin\theta}{r} \frac{\partial}{\partial \theta}$ to equation (\ref{ux}).
+\textit{(Note: We must use the product rule because the coefficients depend on
+	$r$ and $\theta$)}
+\begin{align*}
+	u_{xx} & = \frac{\partial}{\partial x}\left( \cos\theta \cdot u_r - \frac{\sin\theta}{r} \cdot u_\theta \right)                                                                                                                                          \\
+	       & = \cos\theta \frac{\partial}{\partial x}(u_r) + u_r \frac{\partial}{\partial x}(\cos\theta) - \left[ \frac{\sin\theta}{r} \frac{\partial}{\partial x}(u_\theta) + u_\theta \frac{\partial}{\partial x}\left(\frac{\sin\theta}{r}\right) \right]
+\end{align*}
+Expanding terms individually is tedious. A cleaner way is to apply the full operator to the full expression:
+\begin{align*}
+	u_{xx} & = \left( \cos\theta \partial_r - \frac{\sin\theta}{r} \partial_\theta \right) \left( \cos\theta u_r - \frac{\sin\theta}{r} u_\theta \right)                                           \\
+	       & = \cos^2\theta u_{rr} - \frac{2\sin\theta\cos\theta}{r}u_{r\theta} + \frac{\sin^2\theta}{r^2}u_{\theta\theta} + \frac{\sin^2\theta}{r}u_r + \frac{2\sin\theta\cos\theta}{r^2}u_\theta
+\end{align*}
+\\
+\\
+\textbf{Step 4. Second Partial Derivative $u_{yy}$}
+We apply $\frac{\partial}{\partial y} = \sin\theta \frac{\partial}{\partial r} + \frac{\cos\theta}{r} \frac{\partial}{\partial \theta}$ to equation (\ref{uy}):
+\begin{align*}
+	u_{yy} & = \left( \sin\theta \partial_r + \frac{\cos\theta}{r} \partial_\theta \right) \left( \sin\theta u_r + \frac{\cos\theta}{r} u_\theta \right)                                           \\
+	       & = \sin^2\theta u_{rr} + \frac{2\sin\theta\cos\theta}{r}u_{r\theta} + \frac{\cos^2\theta}{r^2}u_{\theta\theta} + \frac{\cos^2\theta}{r}u_r - \frac{2\sin\theta\cos\theta}{r^2}u_\theta
+\end{align*}
+\\
+\\
+\textbf{Step 5. Summation $u_{xx} + u_{yy}$}
+Adding the two expanded expressions:
+\begin{align*}
+	u_{xx} + u_{yy} & = (\cos^2\theta + \sin^2\theta)u_{rr}                                             \\
+	                & \quad + \frac{1}{r}(\sin^2\theta + \cos^2\theta)u_r                               \\
+	                & \quad + \frac{1}{r^2}(\sin^2\theta + \cos^2\theta)u_{\theta\theta}                \\
+	                & \quad + \text{(Terms with } u_{r\theta} \text{ and } u_\theta \text{ cancel out)}
+\end{align*}
+Since $\cos^2\theta + \sin^2\theta = 1$, we arrive at the final form:
+\[
+	\nabla^2 u = u_{rr} + \frac{1}{r}u_r + \frac{1}{r^2}u_{\theta\theta} = 0
+\]
+This completes the derivation.
+
+\pagebreak
+
+% Question 19
+
+\section{Question 19}
+\textbf{Problem}
+The temperature $T$ at a point $(x,y,z)$ is inversely proportional to the square
+of the distance from the origin.
+Given $T(0,0,1)=500$:
+\begin{enumerate}
+	\item Find the rate of change of $T$ at $(2,3,3)$ in the direction of $(3,1,1)$.
+	\item In which direction does $T$ increase most rapidly?
+	\item What is the maximum rate of change?
+\end{enumerate}
+\textbf{Solution}
+\\
+\\
+\textbf{Step 1. Define the Temperature Function}
+Let $r$ be the distance from the origin, $r^2 = x^2 + y^2 + z^2$.
+The problem states $T = \frac{k}{r^2} = \frac{k}{x^2+y^2+z^2}$.
+\\
+Using the condition $T(0,0,1) = 500$:
+\[
+	500 = \frac{k}{0^2 + 0^2 + 1^2} \implies k = 500
+\]
+So, $T(x,y,z) = 500(x^2 + y^2 + z^2)^{-1}$.
+\\
+\\
+\textbf{Step 2. Calculate the Gradient $\nabla T$}
+We compute the partial derivatives:
+\begin{align*}
+	\frac{\partial T}{\partial x} & = -500(x^2+y^2+z^2)^{-2}(2x) = -\frac{1000x}{(x^2+y^2+z^2)^2} \\
+	\frac{\partial T}{\partial y} & = -\frac{1000y}{(x^2+y^2+z^2)^2}                              \\
+	\frac{\partial T}{\partial z} & = -\frac{1000z}{(x^2+y^2+z^2)^2}
+\end{align*}
+\[
+	\nabla T = -\frac{1000}{(x^2+y^2+z^2)^2} \langle x, y, z \rangle
+\]
+\\
+\\
+\textbf{Step 3. Evaluate Gradient at $P(2,3,3)$}
+First, calculate the squared distance at $P$:
+\[
+	r^2 = 2^2 + 3^2 + 3^2 = 4 + 9 + 9 = 22
+\]
+Now substitute into the gradient expression:
+\[
+	\nabla T(2,3,3) = -\frac{1000}{(22)^2} \langle 2, 3, 3 \rangle = -\frac{1000}{484} \langle 2, 3, 3 \rangle = -\frac{250}{121} \langle 2, 3, 3 \rangle
+\]
+\[
+	\nabla T = \left\langle -\frac{500}{121}, -\frac{750}{121}, -\frac{750}{121} \right\rangle
+\]
+\\
+\\
+\textbf{Part 1. Rate of Change in Direction $\vec{v} = (3,1,1)$}
+We need the unit vector $\vec{u}$ in the direction of $\vec{v}$:
+\[
+	|\vec{v}| = \sqrt{3^2 + 1^2 + 1^2} = \sqrt{9+1+1} = \sqrt{11}
+\]
+\[
+	\vec{u} = \frac{1}{\sqrt{11}}\langle 3, 1, 1 \rangle
+\]
+The directional derivative is $D_{\vec{u}}T = \nabla T \cdot \vec{u}$:
+\begin{align*}
+	D_{\vec{u}}T & = \left( -\frac{250}{121} \langle 2, 3, 3 \rangle \right) \cdot \left( \frac{1}{\sqrt{11}} \langle 3, 1, 1 \rangle \right) \\
+	             & = -\frac{250}{121\sqrt{11}} \left( (2)(3) + (3)(1) + (3)(1) \right)                                                        \\
+	             & = -\frac{250}{121\sqrt{11}} (6 + 3 + 3) = -\frac{250(12)}{121\sqrt{11}}                                                    \\
+	             & = -\frac{3000}{121\sqrt{11}} \approx -7.47
+\end{align*}
+\\
+\\
+\textbf{Part 2. Direction of Most Rapid Increase}
+Temperature increases most rapidly in the direction of the gradient vector $\nabla T$.
+\[
+	\text{Direction} = \nabla T = -\frac{250}{121} \langle 2, 3, 3 \rangle
+\]
+Since the scalar is negative, this vector points towards the origin (opposite to the position vector).
+Normalized direction: $\vec{u}_{max} = \frac{\langle -2, -3, -3 \rangle}{\sqrt{22}}$.
+\\
+\\
+\textbf{Part 3. Maximum Rate of Change}
+The maximum rate is the magnitude of the gradient vector $|\nabla T|$:
+\begin{align*}
+	|\nabla T| & = \left| -\frac{250}{121} \langle 2, 3, 3 \rangle \right| \\
+	           & = \frac{250}{121} \sqrt{2^2 + 3^2 + 3^2}                  \\
+	           & = \frac{250}{121} \sqrt{22} \approx 9.69
+\end{align*}
+
+\pagebreak
+
+% Question 20 - half way done
+
+\section{Question 20}
+\textbf{Problem:}
+Any scalar function $f$ for which $\nabla^{2}f=0$ (Laplace's Equation) is said
+to be harmonic. Verify that $f(x,y,z)=(x^{2}+y^{2}+z^{2})^{-1/2}$ is harmonic
+except at the origin.
+\\
+\\
+\textbf{Solution}
+Let $r = \sqrt{x^2+y^2+z^2}$. The function can be written as
+$f = r^{-1} = (x^2+y^2+z^2)^{-1/2}$.
+We need to show that
+$\nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} = 0$.
+\\
+\\
+\textbf{Step 1. Partial Derivatives with respect to $x$}
+First derivative:
+\begin{align*}
+	\frac{\partial f}{\partial x} & = -\frac{1}{2}(x^2+y^2+z^2)^{-3/2} \cdot (2x) \\
+	                              & = -x(x^2+y^2+z^2)^{-3/2}
+\end{align*}
+Second derivative (using Product Rule):
+\begin{align*}
+	\frac{\partial^2 f}{\partial x^2} & = \frac{\partial}{\partial x} \left[ -x(x^2+y^2+z^2)^{-3/2} \right]                          \\
+	                                  & = (-1)(x^2+y^2+z^2)^{-3/2} + (-x) \left[ -\frac{3}{2}(x^2+y^2+z^2)^{-5/2} \cdot (2x) \right] \\
+	                                  & = -(x^2+y^2+z^2)^{-3/2} + 3x^2(x^2+y^2+z^2)^{-5/2}
+\end{align*}
+To combine terms, multiply the first term by $\frac{x^2+y^2+z^2}{x^2+y^2+z^2}$:
+\begin{align*}
+	\frac{\partial^2 f}{\partial x^2} & = \frac{-(x^2+y^2+z^2) + 3x^2}{(x^2+y^2+z^2)^{5/2}} = \frac{2x^2 - y^2 - z^2}{(x^2+y^2+z^2)^{5/2}}
+\end{align*}
+\\
+\\
+\textbf{Step 2. Partial Derivatives with respect to $y$ and $z$}
+By symmetry, the derivatives for $y$ and $z$ follow the exact same pattern:
+\[
+	\frac{\partial^2 f}{\partial y^2} = \frac{2y^2 - x^2 - z^2}{(x^2+y^2+z^2)^{5/2}}
+\]
+\[
+	\frac{\partial^2 f}{\partial z^2} = \frac{2z^2 - x^2 - y^2}{(x^2+y^2+z^2)^{5/2}}
+\]
+\\
+\\
+\textbf{Step 3. Summation}
+Summing the numerators:
+\begin{align*}
+	\text{Numerator} & = (2x^2 - y^2 - z^2) + (2y^2 - x^2 - z^2) + (2z^2 - x^2 - y^2) \\
+	                 & = (2x^2 - x^2 - x^2) + (2y^2 - y^2 - y^2) + (2z^2 - z^2 - z^2) \\
+	                 & = 0 + 0 + 0 = 0
+\end{align*}
+Thus:
+\[
+	\nabla^2 f = \frac{0}{(x^2+y^2+z^2)^{5/2}} = 0
+\]
+Since the Laplacian is zero for all points where $x^2+y^2+z^2 \neq 0$, the
+function is harmonic everywhere except at the origin.
+
+\pagebreak
+
+% Question 21
+
+\section{Question 21}
+\textbf{Problem}
+Evaluate $\oint_C \vec{f} \cdot d\vec{r}$ for the path
+$C = C_1 + C_2 + C_3 + C_4$ shown in the figure, where
+$\vec{f}(x,y,z) = (y-x^2)\hat{i} + (x-y^2z)\hat{j} - yz^2\hat{k}$. The vertices
+are $A(2,1,0)$, $B(0,1,0)$, $C(0,1,2)$, and $D(2,0,0)$.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{1. Segment $C_1$: From $D(2,0,0)$ to $B(0,1,0)$}
+\\
+Parameterization: $x$ goes from 2 to 0, $y$ goes from 0 to 1, $z=0$.
+Let $x = 2 - 2t, \quad y = t, \quad z = 0$ for $t \in [0, 1]$.
+\\
+Differentials: $dx = -2dt, \quad dy = dt, \quad dz = 0$.
+Substitute into the integral:
+\begin{align*}
+	I_1 & = \int_0^1 \left[ (t - (2-2t)^2)(-2) + ((2-2t) - t^2(0))(1) + 0 \right] dt              \\
+	    & = \int_0^1 \left[ -2(t - (4 - 8t + 4t^2)) + 2 - 2t \right] dt                           \\
+	    & = \int_0^1 \left[ -2t + 8 - 16t + 8t^2 + 2 - 2t \right] dt                              \\
+	    & = \int_0^1 \left[ 8t^2 - 20t + 10 \right] dt                                            \\
+	    & = \left[ \frac{8}{3}t^3 - 10t^2 + 10t \right]_0^1 = \frac{8}{3} - 10 + 10 = \frac{8}{3}
+\end{align*}
+\\
+\\
+\textbf{2. Segment $C_2$: From $B(0,1,0)$ to $C(0,1,2)$}
+\\
+Parameterization: $x=0, y=1, z=t$ for $t \in [0, 2]$.
+\\
+Differentials: $dx=0, dy=0, dz=dt$.
+\begin{align*}
+	I_2 & = \int_0^2 \left[ -yz^2 \right] dt = \int_0^2 -(1)(t^2) dt \\
+	    & = \left[ -\frac{t^3}{3} \right]_0^2 = -\frac{8}{3}
+\end{align*}
+\\
+\\
+\textbf{3. Segment $C_3$: From $C(0,1,2)$ to $A(2,1,0)$}
+\\
+Parameterization: $x=2t, y=1, z=2-2t$ for $t \in [0, 1]$.
+\\
+Differentials: $dx=2dt, dy=0, dz=-2dt$.
+\begin{align*}
+	I_3 & = \int_0^1 \left[ (1 - (2t)^2)(2) + 0 - (1)(2-2t)^2(-2) \right] dt \\
+	    & = \int_0^1 \left[ 2(1 - 4t^2) + 2(2-2t)^2 \right] dt               \\
+	    & = \int_0^1 \left[ 2 - 8t^2 + 2(4 - 8t + 4t^2) \right] dt           \\
+	    & = \int_0^1 \left[ 2 - 8t^2 + 8 - 16t + 8t^2 \right] dt             \\
+	    & = \int_0^1 (10 - 16t) dt                                           \\
+	    & = \left[ 10t - 8t^2 \right]_0^1 = 10 - 8 = 2
+\end{align*}
+\\
+\\
+\textbf{4. Segment $C_4$: From $A(2,1,0)$ to $D(2,0,0)$}
+\\
+Parameterization: $x=2, z=0, y$ goes from 1 to 0.
+Let $y = t$ from 1 to 0.
+\\
+Differentials: $dx=0, dz=0, dy=dt$.
+\begin{align*}
+	I_4 & = \int_1^0 \left[ (x - y^2z) \right] dy = \int_1^0 (2 - y^2(0)) dy \\
+	    & = \int_1^0 2 dy = [2y]_1^0 = 0 - 2 = -2
+\end{align*}
+\\
+\\
+\textbf{Total Integral}
+\[
+	\oint_C \vec{f} \cdot d\vec{r} = I_1 + I_2 + I_3 + I_4 = \frac{8}{3} - \frac{8}{3} + 2 - 2 = 0
+\]
+\textbf{Final Answer } The value of the line integral is 0.
+
+\pagebreak
+
+% Question 22
+
+\section{Question 22}
+\textbf{Problem}
+If $\vec{f} = (2xy - x^2)\hat{i} + (x + y^2)\hat{j}$, verify Green's Theorem in
+the plane where $S$ is the closed region bounded by $y=x^2$ and $x=y^2$. The
+path $C = C_1 + C_2$ is shown in the figure.
+\\
+\\
+\textbf{Solution}
+Green's Theorem states:
+\[
+	\oint_C \vec{f} \cdot d\vec{r} = \iint_S \left( \frac{\partial M}{\partial x} - \frac{\partial L}{\partial y} \right) dA
+\]
+where $\vec{f} = L\hat{i} + M\hat{j}$.
+\\
+Given: $L = 2xy - x^2$ and $M = x + y^2$.
+\\
+\\
+\textbf{Part 1. The Double Integral}
+We compute the partial derivatives:
+\[
+	\frac{\partial M}{\partial x} = 1, \quad \frac{\partial L}{\partial y} = 2x
+\]
+\[
+	\text{Integrand} = \frac{\partial M}{\partial x} - \frac{\partial L}{\partial y} = 1 - 2x
+\]
+The region $S$ is bounded by $y=x^2$ (lower curve) and $y=\sqrt{x}$ (upper curve) from $x=0$ to $x=1$.
+\begin{align*}
+	\iint_S (1 - 2x) \, dy \, dx & = \int_0^1 \int_{x^2}^{\sqrt{x}} (1 - 2x) \, dy \, dx                                                       \\
+	                             & = \int_0^1 (1 - 2x) [y]_{x^2}^{\sqrt{x}} \, dx                                                              \\
+	                             & = \int_0^1 (1 - 2x)(\sqrt{x} - x^2) \, dx                                                                   \\
+	                             & = \int_0^1 (x^{1/2} - x^2 - 2x^{3/2} + 2x^3) \, dx                                                          \\
+	                             & = \left[ \frac{2}{3}x^{3/2} - \frac{x^3}{3} - 2\left(\frac{2}{5}x^{5/2}\right) + \frac{2x^4}{4} \right]_0^1 \\
+	                             & = \left( \frac{2}{3} - \frac{1}{3} - \frac{4}{5} + \frac{1}{2} \right) - 0                                  \\
+	                             & = \frac{1}{3} - \frac{4}{5} + \frac{1}{2}                                                                   \\
+	                             & = \frac{10}{30} - \frac{24}{30} + \frac{15}{30}                                                             \\
+	                             & = \frac{1}{30}
+\end{align*}
+\\
+\\
+\textbf{Part 2. The Line Integral}
+The line integral is $\oint_C (2xy - x^2)dx + (x + y^2)dy$.
+\\
+\\
+\textbf{Segment $C_1$: Along $y=x^2$ from $(0,0)$ to $(1,1)$}
+Let $x=t, y=t^2$ for $t \in [0, 1]$. Then $dx=dt, dy=2t dt$.
+\begin{align*}
+	I_1 & = \int_0^1 \left[ (2(t)(t^2) - t^2)(1) + (t + (t^2)^2)(2t) \right] dt               \\
+	    & = \int_0^1 \left[ (2t^3 - t^2) + (2t^2 + 2t^5) \right] dt                           \\
+	    & = \int_0^1 (2t^5 + 2t^3 + t^2) dt                                                   \\
+	    & = \left[ \frac{2t^6}{6} + \frac{2t^4}{4} + \frac{t^3}{3} \right]_0^1                \\
+	    & = \frac{1}{3} + \frac{1}{2} + \frac{1}{3} = \frac{2}{3} + \frac{1}{2} = \frac{7}{6}
+\end{align*}
+\\
+\\
+\textbf{Segment $C_2$: Along $x=y^2$ from $(1,1)$ to $(0,0)$}
+Let $y=t$ from $t=1$ to $0$. Then $x=t^2, dx=2t dt$.
+\begin{align*}
+	I_2 & = \int_1^0 \left[ (2(t^2)(t) - (t^2)^2)(2t) + (t^2 + t^2)(1) \right] dt                                       \\
+	    & = \int_1^0 \left[ (2t^3 - t^4)(2t) + 2t^2 \right] dt                                                          \\
+	    & = \int_1^0 (4t^4 - 2t^5 + 2t^2) dt                                                                            \\
+	    & = \left[ \frac{4t^5}{5} - \frac{2t^6}{6} + \frac{2t^3}{3} \right]_1^0                                         \\
+	    & = 0 - \left( \frac{4}{5} - \frac{1}{3} + \frac{2}{3} \right)                                                  \\
+	    & = - \left( \frac{4}{5} + \frac{1}{3} \right) = - \left( \frac{12}{15} + \frac{5}{15} \right) = -\frac{17}{15}
+\end{align*}
+\\
+\\
+\textbf{Total Line Integral:}
+\[
+	\oint_C \vec{f} \cdot d\vec{r} = I_1 + I_2 = \frac{7}{6} - \frac{17}{15}
+\]
+Find common denominator (30):
+\[
+	\frac{35}{30} - \frac{34}{30} = \frac{1}{30}
+\]
+\textbf{Conclusion:}
+Since the double integral $\left(\frac{1}{30}\right)$ equals the line integral
+$\left(\frac{1}{30}\right)$, Green's Theorem is verified.
+
+\pagebreak
+
+% Question 23
+
+\section{Question 23}
+\textbf{Problem}
+Verify Stokes' Theorem
+$\iint_S (\nabla \times \vec{f}) \cdot d\vec{s} = \oint_C \vec{f} \cdot d\vec{r}$
+for the vector field $\vec{f} = xz^2\hat{i} - yx\hat{j} + zy^2\hat{k}$, where $S$
+is the upper hemisphere $x^2 + y^2 + z^2 = 9$ ($0 \le z \le 3$) and $C$ is its
+circular boundary on the $xy$-plane.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{Part 1. The Line Integral}
+The boundary $C$ is the circle $x^2 + y^2 = 9$ on the plane $z=0$.
+Since $z=0$ everywhere on $C$, we have $dz=0$.
+Substituting $z=0$ into the vector field $\vec{f}$:
+\[
+	\vec{f}(x,y,0) = x(0)^2\hat{i} - yx\hat{j} + (0)y^2\hat{k} = -yx\hat{j}
+\]
+The line integral simplifies to:
+\[
+	\oint_C \vec{f} \cdot d\vec{r} = \oint_C (0 dx - yx dy + 0 dz) = \oint_C -xy \, dy
+\]
+We parameterize the circle $C$ (counter-clockwise, radius 3):
+\[
+	x = 3\cos t, \quad y = 3\sin t, \quad dy = 3\cos t \, dt, \quad t \in [0, 2\pi]
+\]
+Substitute into the integral:
+\begin{align*}
+	I & = \int_0^{2\pi} -(3\cos t)(3\sin t)(3\cos t) \, dt \\
+	  & = -27 \int_0^{2\pi} \cos^2 t \sin t \, dt
+\end{align*}
+Let $u = \cos t$, then $du = -\sin t \, dt$.
+Limits: $t=0 \implies u=1$, $t=2\pi \implies u=1$.
+\[
+	I = -27 \int_1^1 u^2 (-du) = 0
+\]
+\textbf{Result:} The line integral is \textbf{0}.
+\\
+\\
+\textbf{Part 2. The Surface Integral}
+First, we compute the Curl of $\vec{f}$:
+\[
+	\nabla \times \vec{f} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \partial_x & \partial_y & \partial_z \\ xz^2 & -yx & zy^2 \end{vmatrix}
+\]
+\begin{align*}
+	\text{$\hat{i}$-component:} & \quad \frac{\partial}{\partial y}(zy^2) - \frac{\partial}{\partial z}(-yx) = 2zy - 0 = 2yz                     \\
+	\text{$\hat{j}$-component:} & \quad -\left( \frac{\partial}{\partial x}(zy^2) - \frac{\partial}{\partial z}(xz^2) \right) = -(0 - 2xz) = 2xz \\
+	\text{$\hat{k}$-component:} & \quad \frac{\partial}{\partial x}(-yx) - \frac{\partial}{\partial y}(xz^2) = -y - 0 = -y
+\end{align*}
+\[
+	\nabla \times \vec{f} = \langle 2yz, 2xz, -y \rangle
+\]
+The outward unit normal for the sphere $x^2+y^2+z^2=9$ is $\hat{n} = \frac{1}{3}\langle x, y, z \rangle$.
+We calculate the dot product $(\nabla \times \vec{f}) \cdot \hat{n}$:
+\begin{align*}
+	(\nabla \times \vec{f}) \cdot \hat{n} & = \frac{1}{3} \left[ (2yz)(x) + (2xz)(y) + (-y)(z) \right] \\
+	                                      & = \frac{1}{3} [ 2xyz + 2xyz - yz ]                         \\
+	                                      & = \frac{1}{3} [ 4xyz - yz ]
+\end{align*}
+We now integrate this scalar field over the hemisphere using spherical coordinates:
+\[
+	x = 3\sin\phi\cos\theta, \quad y = 3\sin\phi\sin\theta, \quad z = 3\cos\phi
+\]
+The area element is $dS = 9 \sin\phi \, d\phi \, d\theta$.
+The integral splits into two terms:
+\[
+	I_S = \iint_S \frac{4}{3}xyz \, dS - \iint_S \frac{1}{3}yz \, dS
+\]
+\\
+\\
+\textbf{Term 1 analysis ($4xyz$):}
+The term involves the product
+$xy \propto \cos\theta \sin\theta = \frac{1}{2}\sin(2\theta)$. Integration with
+respect to $\theta$ from $0$ to $2\pi$:
+\[
+	\int_0^{2\pi} \sin(2\theta) \, d\theta = 0 \implies \text{The first term vanishes.}
+\]
+\\
+\\
+\textbf{Term 2 analysis ($-yz$):}
+The term involves $y \propto \sin\theta$.
+Integration with respect to $\theta$ from $0$ to $2\pi$:
+\[
+	\int_0^{2\pi} \sin\theta \, d\theta = 0 \implies \text{The second term vanishes.}
+\]
+\\
+\\
+\textbf{Conclusion}
+\\
+Since both terms integrate to zero due to symmetry:
+\[
+	\iint_S (\nabla \times \vec{f}) \cdot d\vec{s} = 0
+\]
+Both the line integral and surface integral yield 0, verifying Stokes' Theorem.
+
+\pagebreak
+
+% Question 24
+
+\section{Question 24}
+\textbf{Problem}
+Verify Stokes' Theorem
+$\iint_S (\nabla \times \vec{f}) \cdot d\vec{s} = \oint_C \vec{f} \cdot d\vec{r}$
+for the vector field $\vec{f} = y\hat{i} + z\hat{j} + x\hat{k}$. The surface $S$
+is the paraboloid $z = 1 - (x^2 + y^2)$ for $z \ge 0$, bounded by the circle $C$
+in the $xy$-plane.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{Part 1. The Line Integral}
+The boundary curve $C$ is the circle $x^2 + y^2 = 1$ lying in the plane $z=0$.
+Orientation is counter-clockwise (standard positive orientation).
+\\
+\\
+\textbf{Parameterization:}
+Let $x = \cos t$, $y = \sin t$, $z = 0$ for $t \in [0, 2\pi]$.
+The differential vector $d\vec{r}$ is:
+\[
+	d\vec{r} = \langle -\sin t, \cos t, 0 \rangle \, dt
+\]
+Substitute the coordinates into the vector field $\vec{f} = \langle y, z, x \rangle$:
+\[
+	\vec{f}(t) = \langle \sin t, 0, \cos t \rangle
+\]
+\textit{(Note: $y=\sin t$, $z=0$, $x=\cos t$)}
+\\
+\\
+\textbf{Calculate Dot Product:}
+\begin{align*}
+	\vec{f} \cdot d\vec{r} & = \langle \sin t, 0, \cos t \rangle \cdot \langle -\sin t, \cos t, 0 \rangle \\
+	                       & = (\sin t)(-\sin t) + (0)(\cos t) + (\cos t)(0)                              \\
+	                       & = -\sin^2 t
+\end{align*}
+\\
+\\
+\textbf{Evaluate Integral:}
+\begin{align*}
+	\oint_C \vec{f} \cdot d\vec{r} & = \int_0^{2\pi} -\sin^2 t \, dt                               \\
+	                               & = -\int_0^{2\pi} \frac{1 - \cos(2t)}{2} \, dt                 \\
+	                               & = -\frac{1}{2} \left[ t - \frac{\sin(2t)}{2} \right]_0^{2\pi} \\
+	                               & = -\frac{1}{2} [ (2\pi - 0) - (0 - 0) ]                       \\
+	                               & = -\pi
+\end{align*}
+\\
+\\
+\textbf{Part 2. The Surface Integral}
+First, calculate the Curl of $\vec{f} = \langle y, z, x \rangle$:
+\[
+	\nabla \times \vec{f} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \partial_x & \partial_y & \partial_z \\ y & z & x \end{vmatrix}
+\]
+\begin{align*}
+	\text{$\hat{i}$-component:} & \quad \frac{\partial}{\partial y}(x) - \frac{\partial}{\partial z}(z) = 0 - 1 = -1 \\
+	\text{$\hat{j}$-component:} & \quad \frac{\partial}{\partial z}(y) - \frac{\partial}{\partial x}(x) = 0 - 1 = -1 \\
+	\text{$\hat{k}$-component:} & \quad \frac{\partial}{\partial x}(z) - \frac{\partial}{\partial y}(y) = 0 - 1 = -1
+\end{align*}
+\[
+	\nabla \times \vec{f} = \langle -1, -1, -1 \rangle
+\]
+\\
+\\
+\textbf{Surface Parameterization:}
+The surface is given explicitly by $z = g(x,y) = 1 - x^2 - y^2$.
+For a graph $z=g(x,y)$ with upward orientation, the normal vector $d\vec{s}$ is
+given by:
+\[
+	d\vec{s} = \langle -g_x, -g_y, 1 \rangle \, dA
+\]
+Calculating partial derivatives of $z$:
+\[
+	g_x = -2x \implies -g_x = 2x
+\]
+\[
+	g_y = -2y \implies -g_y = 2y
+\]
+\[
+	d\vec{s} = \langle 2x, 2y, 1 \rangle \, dA
+\]
+\\
+\\
+\textbf{Calculate Flux Integrand:}
+\[
+	(\nabla \times \vec{f}) \cdot d\vec{s} = \langle -1, -1, -1 \rangle \cdot \langle 2x, 2y, 1 \rangle = -2x - 2y - 1
+\]
+\\
+\\
+\textbf{Evaluate Surface Integral:}
+The domain $D$ is the projection of the paraboloid onto the $xy$-plane, which is
+the unit disk $x^2 + y^2 \le 1$. Using polar coordinates:
+$x = r\cos\theta, y = r\sin\theta, dA = r \, dr \, d\theta$.
+\begin{align*}
+	\iint_S (\nabla \times \vec{f}) \cdot d\vec{s} & = \iint_D (-2x - 2y - 1) \, dA                                                    \\
+	                                               & = \int_0^{2\pi} \int_0^1 (-2r\cos\theta - 2r\sin\theta - 1) \, r \, dr \, d\theta \\
+	                                               & = \int_0^{2\pi} \int_0^1 (-2r^2\cos\theta - 2r^2\sin\theta - r) \, dr \, d\theta
+\end{align*}
+We can split this into three terms.
+\begin{enumerate}
+	\item $\int_0^{2\pi} \cos\theta \, d\theta = 0 \implies$ The $x$ term vanishes.
+	\item $\int_0^{2\pi} \sin\theta \, d\theta = 0 \implies$ The $y$ term vanishes.
+	\item The remaining term is the constant $-1$:
+\end{enumerate}
+\begin{align*}
+	I & = \int_0^{2\pi} d\theta \int_0^1 -r \, dr  \\
+	  & = (2\pi) \left[ -\frac{r^2}{2} \right]_0^1 \\
+	  & = 2\pi \left( -\frac{1}{2} \right) = -\pi
+\end{align*}
+\\
+\\
+\textbf{Conclusion}
+\\
+Since $\oint_C \vec{f} \cdot d\vec{r} = -\pi$ and
+$\iint_S (\nabla \times \vec{f}) \cdot d\vec{s} = -\pi$, Stokes' Theorem is
+verified.
+
+\pagebreak
+
+% Question 25
+
+\section{Question 25}
+\textbf{Problem}
+Verify the Divergence Theorem of Gauss
+$\iiint_V (\nabla \cdot \vec{f}) dV = \oiint_S \vec{f} \cdot d\vec{s}$ for the
+vector field $\vec{f} = 2x^2y\hat{i} - y^2\hat{j} + 4xz^2\hat{k}$. The volume
+$V$ is bounded by $x=0, x=2, y=0, z=0$ and the cylinder $y^2+z^2=9$.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{Part 1. The Volume Integral}
+First, calculate the divergence of $\vec{f}$:
+\begin{align*}
+	\nabla \cdot \vec{f} & = \frac{\partial}{\partial x}(2x^2y) + \frac{\partial}{\partial y}(-y^2) + \frac{\partial}{\partial z}(4xz^2) \\
+	                     & = 4xy - 2y + 8xz
+\end{align*}
+We integrate this over the volume $V$. The region is a quarter-cylinder along
+the x-axis. It is best described using polar coordinates for $y$ and $z$:
+\[
+	y = r\cos\theta, \quad z = r\sin\theta, \quad x = x
+\]
+\\
+Limits: $0 \le x \le 2$, $0 \le r \le 3$, $0 \le \theta \le \pi/2$ (First quadrant).
+\\
+The volume element is $dV = r \, dr \, d\theta \, dx$.
+\\
+Substituting variables into the divergence:
+\[
+	\nabla \cdot \vec{f} = 4x(r\cos\theta) - 2(r\cos\theta) + 8x(r\sin\theta)
+\]
+The integral is:
+\[
+	I_V = \int_0^{\pi/2} \int_0^3 \int_0^2 (4xr\cos\theta - 2r\cos\theta + 8xr\sin\theta) \, r \, dx \, dr \, d\theta
+\]
+Integrating with respect to $x$ first ($0$ to $2$):
+\begin{align*}
+	\int_0^2 (\dots) dx & = \left[ 2x^2 r \cos\theta - 2xr \cos\theta + 4x^2 r \sin\theta \right]_0^2 \\
+	                    & = (8r\cos\theta - 4r\cos\theta + 16r\sin\theta) - 0                         \\
+	                    & = 4r\cos\theta + 16r\sin\theta
+\end{align*}
+Now integrate with respect to $r$ ($0$ to $3$), remembering the extra $r$ from
+$dV$:
+\begin{align*}
+	I_V & = \int_0^{\pi/2} \int_0^3 (4r\cos\theta + 16r\sin\theta) r \, dr \, d\theta            \\
+	    & = \int_0^{\pi/2} (4\cos\theta + 16\sin\theta) d\theta \int_0^3 r^2 \, dr               \\
+	    & = \int_0^{\pi/2} (4\cos\theta + 16\sin\theta) d\theta \left[ \frac{r^3}{3} \right]_0^3 \\
+	    & = 9 \int_0^{\pi/2} (4\cos\theta + 16\sin\theta) d\theta
+\end{align*}
+Finally, integrate with respect to $\theta$:
+\begin{align*}
+	I_V & = 9 \left[ 4\sin\theta - 16\cos\theta \right]_0^{\pi/2} \\
+	    & = 9 [ (4(1) - 0) - (0 - 16(1)) ]                        \\
+	    & = 9 [ 4 + 16 ] = 9(20) = 180
+\end{align*}
+\textit{Volume Integral Result:} $180$.
+\\
+\\
+\textbf{Part 2. The Surface Integral}
+We compute the flux through the 5 boundary surfaces.
+\\
+\\
+\textbf{1. Surface $S_1$: $x=0$}
+\\
+Normal $\hat{n} = -\hat{i}$.
+$\vec{f}(0,y,z) = 0\hat{i} - y^2\hat{j} + 0\hat{k}$.
+\\
+Flux: $\vec{f} \cdot \hat{n} = 0$.
+\[ \Phi_1 = 0 \]
+\\
+\\
+\textbf{2. Surface $S_2$: $x=2$}
+\\
+Normal $\hat{n} = \hat{i}$.
+$\vec{f}(2,y,z) = 8y\hat{i} - y^2\hat{j} + 8z^2\hat{k}$.
+\\
+Flux integrand: $\vec{f} \cdot \hat{i} = 8y$.
+\\
+Region is the quarter circle ($r=3$) in $yz$-plane.
+\begin{align*}
+	\Phi_2 = \int_0^{\pi/2} \int_0^3 (8r\cos\theta) r \, dr \, d\theta & = 8 \left(\int \cos\theta d\theta\right) \left(\int r^2 dr\right)        \\
+	                                                                   & = 8 [\sin\theta]_0^{\pi/2} \left[\frac{r^3}{3}\right]_0^3 = 8(1)(9) = 72
+\end{align*}
+\\
+\\
+\textbf{3. Surface $S_3$: $y=0$}
+\\
+Normal $\hat{n} = -\hat{j}$.
+$\vec{f}(x,0,z) = 0\hat{i} - 0\hat{j} + 4xz^2\hat{k}$.
+\\
+Flux integrand: $\vec{f} \cdot (-\hat{j}) = -(-0) = 0$.
+\[ \Phi_3 = 0 \]
+\\
+\\
+\textbf{4. Surface $S_4$: $z=0$}
+\\
+Normal $\hat{n} = -\hat{k}$.
+$\vec{f}(x,y,0) = 2x^2y\hat{i} - y^2\hat{j} + 0\hat{k}$.
+\\
+Flux integrand: $\vec{f} \cdot (-\hat{k}) = 0$.
+\[ \Phi_4 = 0 \]
+\\
+\\
+\textbf{5. Surface $S_5$: $y^2+z^2=9$}
+The normal vector to the cylinder is in the $yz$-plane.
+\\
+Gradient $\nabla(y^2+z^2) = 2y\hat{j} + 2z\hat{k}$.
+\\
+Unit Normal $\hat{n} = \frac{y}{3}\hat{j} + \frac{z}{3}\hat{k}$ (since radius is 3).
+\\
+Flux integrand:
+\begin{align*}
+	\vec{f} \cdot \hat{n} & = (2x^2y\hat{i} - y^2\hat{j} + 4xz^2\hat{k}) \cdot \left( 0\hat{i} + \frac{y}{3}\hat{j} + \frac{z}{3}\hat{k} \right) \\
+	                      & = -\frac{y^3}{3} + \frac{4xz^3}{3}
+\end{align*}
+We integrate this over the surface. $dS = R \, d\theta \, dx = 3 \, d\theta \, dx$.
+Substitute $y=3\cos\theta, z=3\sin\theta$:
+\begin{align*}
+	\text{Integrand} & = -\frac{(3\cos\theta)^3}{3} + \frac{4x(3\sin\theta)^3}{3} \\
+	                 & = -9\cos^3\theta + 36x\sin^3\theta
+\end{align*}
+Now integrate over $x \in [0,2]$ and $\theta \in [0, \pi/2]$:
+\[
+	\Phi_5 = \int_0^2 \int_0^{\pi/2} (-9\cos^3\theta + 36x\sin^3\theta) (3 \, d\theta \, dx)
+\]
+\[
+	\Phi_5 = 3 \left[ \int_0^2 dx \int_0^{\pi/2} -9\cos^3\theta d\theta + \int_0^2 36x dx \int_0^{\pi/2} \sin^3\theta d\theta \right]
+\]
+Using $\int_0^{\pi/2} \cos^3\theta d\theta = \frac{2}{3}$ and $\int_0^{\pi/2} \sin^3\theta d\theta = \frac{2}{3}$:
+\begin{align*}
+	\text{Term 1} & = 3(2)(-9)\left(\frac{2}{3}\right) = -36                                                           \\
+	\text{Term 2} & = 3\left[\frac{36x^2}{2}\right]_0^2 \left(\frac{2}{3}\right) = 3(72)\left(\frac{2}{3}\right) = 144
+\end{align*}
+\[
+	\Phi_5 = 144 - 36 = 108
+\]
+\\
+\\
+\textbf{Total Flux}
+\begin{align*}
+	\Phi_{total} & = \Phi_1 + \Phi_2 + \Phi_3 + \Phi_4 + \Phi_5 \\
+	             & = 0 + 72 + 0 + 0 + 108                       \\
+	             & = 180
+\end{align*}
+\\
+\textbf{Conclusion}
+\\
+Since the Volume Integral ($180$) equals the Surface Integral ($180$), the
+Divergence Theorem is verified.
+
+\pagebreak
+
+% Question 26
+
+\section{Question 26}
+\textbf{Problem}
+Find the shaded area shown in the figure by Green's Theorem in the $xy$-plane:
+\[
+    \text{Area} = \frac{1}{2} \oint_C (x dy - y dx)
+\]
+The region is bounded by $y=0$, $y=2-x^2$, and $y=x$. The intersection of $y=x$
+and $y=2-x^2$ is at $(1,1)$. The parabola intersects the x-axis at
+$(\sqrt{2}, 0)$.
+\\
+\\
+\textbf{Solution}
+To find the area using Green's Theorem, we use the vector field
+$\vec{F} = (-y/2, x/2)$ or simply the formula:
+\[
+    A = \frac{1}{2} \oint_C (x \, dy - y \, dx)
+\]
+We break the path $C$ into three segments $C_1 + C_2 + C_3$.
+\\
+\\
+\textbf{1. Segment $C_1$: Along the x-axis}
+\\
+Path: From $(0,0)$ to $(\sqrt{2}, 0)$.
+\\
+Equation: $y=0 \implies dy=0$.
+\\
+Integral:
+\[
+    I_1 = \frac{1}{2} \int_0^{\sqrt{2}} (x(0) - (0)dx) = 0
+\]
+\\
+\\
+\textbf{2. Segment $C_2$: Along the parabola}
+\\
+Path: From $(\sqrt{2}, 0)$ to $A(1,1)$.
+\\
+Equation: $y = 2 - x^2$.
+\\
+Differentials: $dy = -2x \, dx$.
+\\
+Substitute into the integral formula:
+\begin{align*}
+    x \, dy - y \, dx &= x(-2x \, dx) - (2 - x^2) \, dx \\
+    &= (-2x^2 - 2 + x^2) \, dx \\
+    &= (-x^2 - 2) \, dx
+\end{align*}
+Integrate from $x=\sqrt{2}$ to $x=1$:
+\begin{align*}
+    I_2 &= \frac{1}{2} \int_{\sqrt{2}}^1 (-x^2 - 2) \, dx \\
+        &= \frac{1}{2} \left[ -\frac{x^3}{3} - 2x \right]_{\sqrt{2}}^1 \\
+        &= \frac{1}{2} \left( \left(-\frac{1}{3} - 2\right) - \left(-\frac{2\sqrt{2}}{3} - 2\sqrt{2}\right) \right) \\
+        &= \frac{1}{2} \left( -\frac{7}{3} - \left( -\frac{8\sqrt{2}}{3} \right) \right) \\
+        &= \frac{1}{2} \left( \frac{8\sqrt{2} - 7}{3} \right) = \frac{8\sqrt{2} - 7}{6}
+\end{align*}
+\\
+\\
+\textbf{3. Segment $C_3$: Along the line $y=x$}
+\\
+Path: From $A(1,1)$ to $(0,0)$.
+\\
+Equation: $y = x \implies dy = dx$.
+\\
+Substitute into the integral:
+\begin{align*}
+    x \, dy - y \, dx &= x(dx) - x(dx) = 0
+\end{align*}
+\[
+    I_3 = 0
+\]
+\\
+\\
+\textbf{Total Area}
+Summing the integrals:
+\[
+    \text{Area} = I_1 + I_2 + I_3 = 0 + \frac{8\sqrt{2} - 7}{6} + 0
+\]
+\[
+    \text{Area} = \frac{8\sqrt{2} - 7}{6} \approx 0.719
+\]
+\\
+\\
+\textbf{Verification (Standard Integration)}
+\begin{align*}
+    A &= \int_0^1 (x - 0) dx + \int_1^{\sqrt{2}} (2-x^2) dx \\
+      &= \left[\frac{x^2}{2}\right]_0^1 + \left[2x - \frac{x^3}{3}\right]_1^{\sqrt{2}} \\
+      &= \frac{1}{2} + \left( \frac{4\sqrt{2}}{3} - \frac{5}{3} \right) \\
+      &= \frac{3}{6} + \frac{8\sqrt{2} - 10}{6} = \frac{8\sqrt{2} - 7}{6}
+\end{align*}
+The result is correct.
+
+\pagebreak
+
+% Question 27
+
+\section{Question 27}
+\textbf{Problem} \\
+i) Find the angle between surfaces $x^2 + y^2 + z^2 = 9$ and $z = x^2 + y^2 - 3$ at the point $P(2, -1, 2)$. \\
+ii) Test if any of these scalar functions is a harmonic function. Why?
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{i) Angle Between the Surfaces}
+The angle $\theta$ between two surfaces is defined as the angle between their
+normal vectors at the point of intersection. The normal vector to a surface
+defined by $f(x,y,z) = c$ is the gradient $\nabla f$.
+\\
+Let the scalar functions defining the surfaces be:
+\[ f(x,y,z) = x^2 + y^2 + z^2 - 9 \]
+\[ g(x,y,z) = x^2 + y^2 - z - 3 \]
+\\
+\\
+\textbf{1. Compute Gradients}
+\[
+    \nabla f = \frac{\partial f}{\partial x}\hat{i} + \frac{\partial f}{\partial y}\hat{j} + \frac{\partial f}{\partial z}\hat{k} = 2x\hat{i} + 2y\hat{j} + 2z\hat{k}
+\]
+\[
+    \nabla g = \frac{\partial g}{\partial x}\hat{i} + \frac{\partial g}{\partial y}\hat{j} + \frac{\partial g}{\partial z}\hat{k} = 2x\hat{i} + 2y\hat{j} - 1\hat{k}
+\]
+\\
+\\
+\textbf{2. Evaluate at Point $P(2, -1, 2)$}
+Substitute $x=2, y=-1, z=2$:
+\[
+    \vec{n}_1 = \nabla f(2, -1, 2) = 2(2)\hat{i} + 2(-1)\hat{j} + 2(2)\hat{k} = \langle 4, -2, 4 \rangle
+\]
+\[
+    \vec{n}_2 = \nabla g(2, -1, 2) = 2(2)\hat{i} + 2(-1)\hat{j} - 1\hat{k} = \langle 4, -2, -1 \rangle
+\]
+\\
+\\
+\textbf{3. Calculate the Angle}
+The cosine of the angle is given by:
+\[
+    \cos \theta = \frac{|\vec{n}_1 \cdot \vec{n}_2|}{|\vec{n}_1| |\vec{n}_2|}
+\]
+Dot Product:
+\[
+    \vec{n}_1 \cdot \vec{n}_2 = (4)(4) + (-2)(-2) + (4)(-1) = 16 + 4 - 4 = 16
+\]
+Magnitudes:
+\[
+    |\vec{n}_1| = \sqrt{4^2 + (-2)^2 + 4^2} = \sqrt{16 + 4 + 16} = \sqrt{36} = 6
+\]
+\[
+    |\vec{n}_2| = \sqrt{4^2 + (-2)^2 + (-1)^2} = \sqrt{16 + 4 + 1} = \sqrt{21}
+\]
+Substitute into the formula:
+\[
+    \cos \theta = \frac{16}{6\sqrt{21}} = \frac{8}{3\sqrt{21}}
+\]
+\[
+    \theta = \arccos\left( \frac{8}{3\sqrt{21}} \right) \approx \arccos(0.5819) \approx 54.41^\circ
+\]
+\\
+\\
+\textbf{ii) Harmonic Function Test}
+A function $\phi$ is harmonic if it satisfies Laplace's Equation:
+$\nabla^2 \phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} = 0$.
+\\
+\\
+\textbf{Test for $f(x,y,z) = x^2 + y^2 + z^2 - 9$:}
+\[
+    \frac{\partial^2 f}{\partial x^2} = 2, \quad \frac{\partial^2 f}{\partial y^2} = 2, \quad \frac{\partial^2 f}{\partial z^2} = 2
+\]
+\[
+    \nabla^2 f = 2 + 2 + 2 = 6 \neq 0
+\]
+So, $f$ is \textbf{not} harmonic.
+\\
+\\
+\textbf{Test for $g(x,y,z) = x^2 + y^2 - z - 3$:}
+\[
+    \frac{\partial^2 g}{\partial x^2} = 2, \quad \frac{\partial^2 g}{\partial y^2} = 2, \quad \frac{\partial^2 g}{\partial z^2} = 0
+\]
+\[
+    \nabla^2 g = 2 + 2 + 0 = 4 \neq 0
+\]
+So, $g$ is \textbf{not} harmonic.
+\\
+\\
+\textbf{Conclusion}
+Neither of the scalar functions defining the surfaces is harmonic because their
+Laplacians are non-zero constants.
+
+\pagebreak
+
+% Question 28
+
+\section{Question 28}
+\textbf{Problem}
+Verify the Divergence Theorem of Gauss (DTG):
+$\iiint_V (\nabla \cdot \vec{f}) dV = \oiint_S \vec{f} \cdot d\vec{s}$ for the
+vector field:
+\[
+    \vec{f} = (x^2)\hat{i} + (xz^3(y+1))\hat{j}
+\]
+The volume $V$ is the pentahedron shown in the figure, bounded by
+$x=0, x=2, y=0, z=0$ and the plane $y+z=1$.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{Part 1. The Volume Integral}
+First, calculate the divergence $\nabla \cdot \vec{f}$:
+\[
+    \nabla \cdot \vec{f} = \frac{\partial}{\partial x}(x^2) + \frac{\partial}{\partial y}(x(y+1)z^3) + \frac{\partial}{\partial z}(0)
+\]
+\[
+    = 2x + x(1)z^3 + 0 = 2x + xz^3
+\]
+The volume $V$ is defined by the limits:
+$0 \le x \le 2$, $0 \le y \le 1$, and $0 \le z \le 1-y$.
+\begin{align*}
+    I_V &= \int_0^2 \int_0^1 \int_0^{1-y} (2x + xz^3) \, dz \, dy \, dx \\
+        &= \int_0^2 x \, dx \int_0^1 \left[ 2z + \frac{z^4}{4} \right]_0^{1-y} dy \\
+        &= \left[ \frac{x^2}{2} \right]_0^2 \int_0^1 \left( 2(1-y) + \frac{(1-y)^4}{4} \right) dy \\
+        &= (2) \int_0^1 \left( 2(1-y) + \frac{1}{4}(1-y)^4 \right) dy
+\end{align*}
+Let $u = 1-y$, then $du = -dy$. Limits change from $1 \to 0$.
+\begin{align*}
+    I_V &= 2 \int_1^0 \left( 2u + \frac{u^4}{4} \right) (-du) = 2 \int_0^1 \left( 2u + \frac{u^4}{4} \right) du \\
+        &= 2 \left[ u^2 + \frac{u^5}{20} \right]_0^1 \\
+        &= 2 \left( 1 + \frac{1}{20} \right) = 2(1.05) = 2.1
+\end{align*}
+\textit{Volume Integral Result:} $2.1$
+\\
+\\
+\textbf{Part 2. The Surface Integral}
+We compute the flux $\Phi$ through each of the 5 surfaces.
+\\
+\\
+\textbf{1. Surface $S_1$: $x=0$}
+\\
+Normal $\hat{n} = -\hat{i}$. Field $\vec{f}(0,y,z) = 0\hat{i} + 0\hat{j}$.
+\\
+Flux: $\vec{f} \cdot \hat{n} = 0$.
+\[ \Phi_1 = 0 \]
+\\
+\\
+\textbf{2. Surface $S_2$: $x=2$}
+\\
+Normal $\hat{n} = \hat{i}$. Field $\vec{f}(2,y,z) = 4\hat{i} + 2(y+1)z^3\hat{j}$.
+\\
+Flux integrand: $\vec{f} \cdot \hat{i} = 4$.
+\\
+Area of the triangle (base 1, height 1): $A = \frac{1}{2}(1)(1) = 0.5$.
+\[ \Phi_2 = \iint_{S_2} 4 \, dA = 4(0.5) = 2 \]
+\\
+\\
+\textbf{3. Surface $S_3$: $y=0$}
+This is the rectangle in the $xz$-plane
+\\
+($0 \le x \le 2, 0 \le z \le 1$)
+\\
+Normal $\hat{n} = -\hat{j}$. Field $\vec{f}(x,0,z) = x^2\hat{i} + x(1)z^3\hat{j}$.
+\\
+Flux integrand: $\vec{f} \cdot (-\hat{j}) = -xz^3$.
+\[
+    \Phi_3 = \int_0^2 \int_0^1 -xz^3 \, dz \, dx = -\left( \int_0^2 x \, dx \right) \left( \int_0^1 z^3 \, dz \right)
+\]
+\[
+    \Phi_3 = - \left[ \frac{x^2}{2} \right]_0^2 \left[ \frac{z^4}{4} \right]_0^1 = -(2)\left(\frac{1}{4}\right) = -0.5
+\]
+\\
+\\
+\textbf{4. Surface $S_4$: $z=0$}
+\\
+Normal $\hat{n} = -\hat{k}$. Since $\vec{f}$ has no $k$-component ($\vec{f} \cdot \hat{k} = 0$).
+\[ \Phi_4 = 0 \]
+\\
+\\
+\textbf{5. Surface $S_5$: $y+z=1$}
+\\
+This surface projects onto the $xy$-plane as the rectangle
+$R: 0 \le x \le 2, 0 \le y \le 1$.
+The surface is given by $z = 1-y$.
+The normal vector $d\vec{s}$ for a surface $z=g(x,y)$ oriented upwards is
+$\langle -z_x, -z_y, 1 \rangle dA$.
+Here, $z_x = 0$ and $z_y = -1$.
+\[
+    d\vec{s} = \langle 0, -(-1), 1 \rangle \, dA = \langle 0, 1, 1 \rangle \, dy \, dx
+\]
+Compute the dot product $\vec{f} \cdot d\vec{s}$:
+\[
+    \vec{f} \cdot d\vec{s} = (x^2\hat{i} + x(y+1)z^3\hat{j}) \cdot (0\hat{i} + 1\hat{j} + 1\hat{k}) = x(y+1)z^3
+\]
+Substituting $z = 1-y$ into the integrand:
+\[
+    \text{Integrand} = x(y+1)(1-y)^3
+\]
+\[
+    \Phi_5 = \int_0^2 \int_0^1 x(y+1)(1-y)^3 \, dy \, dx
+\]
+Let $u = 1-y \implies y = 1-u, dy = -du$. Limits $1 \to 0$.
+\begin{align*}
+    \int_0^1 (y+1)(1-y)^3 dy &= \int_1^0 ((1-u)+1)u^3 (-du) \\
+    &= \int_0^1 (2-u)u^3 du = \int_0^1 (2u^3 - u^4) du \\
+    &= \left[ \frac{2u^4}{4} - \frac{u^5}{5} \right]_0^1 = \frac{1}{2} - \frac{1}{5} = 0.3
+\end{align*}
+Now integrate with respect to $x$:
+\[
+    \Phi_5 = \int_0^2 x(0.3) \, dx = 0.3 \left[ \frac{x^2}{2} \right]_0^2 = 0.3(2) = 0.6
+\]
+\\
+\\
+\textbf{Total Flux}
+\[
+    \Phi_{total} = \Phi_1 + \Phi_2 + \Phi_3 + \Phi_4 + \Phi_5 = 0 + 2 - 0.5 + 0 + 0.6 = 2.1
+\]
+\\
+\\
+\textbf{Conclusion}
+Since the Volume Integral ($2.1$) equals the Surface Integral ($2.1$), the
+Divergence Theorem is verified.
+
+\pagebreak
+
+% Question 29
+
+\section{Question 29}
+\textbf{Problem}
+For the vector function $\vec{f} = x^2 z \hat{i} - yx^2 \hat{j} + zxy \hat{k}$
+and $S$ the hemisphere $x^2 + y^2 + z^2 = 9$ where $0 \le z \le 3$, verify
+Stokes' Theorem:
+\[
+    \iint_S (\nabla \times \vec{f}) \cdot d\vec{s} = \oint_C \vec{f} \cdot d\vec{r}
+\]
+The boundary $C$ is the circle $x^2 + y^2 = 9$ in the $z=0$ plane, oriented
+counter-clockwise.
+\\
+\\
+\textbf{Solution}
+\\
+\\
+\textbf{Part 1. The Line Integral}
+The path $C$ lies on the plane $z=0$, so $dz=0$.
+Substitute $z=0$ into the vector field $\vec{f}$:
+\[
+    \vec{f}(x,y,0) = x^2(0)\hat{i} - yx^2\hat{j} + (0)xy\hat{k} = -yx^2\hat{j}
+\]
+The line integral becomes:
+\[
+    \oint_C \vec{f} \cdot d\vec{r} = \oint_C (0 dx - yx^2 dy + 0 dz) = \oint_C -yx^2 \, dy
+\]
+Parameterize the circle $C$ ($x^2 + y^2 = 9$):
+\[
+    x = 3\cos t, \quad y = 3\sin t, \quad dy = 3\cos t \, dt, \quad t \in [0, 2\pi]
+\]
+Substitute into the integral:
+\begin{align*}
+    I &= \int_0^{2\pi} -(3\sin t)(3\cos t)^2 (3\cos t) \, dt \\
+      &= \int_0^{2\pi} -3\sin t (9\cos^2 t) (3\cos t) \, dt \\
+      &= -81 \int_0^{2\pi} \cos^3 t \sin t \, dt
+\end{align*}
+Let $u = \cos t$, then $du = -\sin t \, dt$.
+Limits: $t=0 \implies u=1$, $t=2\pi \implies u=1$.
+\[
+    I = -81 \int_1^1 u^3 (-du) = 0
+\]
+\textbf{Result} The line integral is \textbf{0}.
+\\
+\\
+\textbf{Part 2. The Surface Integral}
+First, compute the Curl of $\vec{f}$:
+\[
+    \nabla \times \vec{f} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \partial_x & \partial_y & \partial_z \\ x^2 z & -yx^2 & zxy \end{vmatrix}
+\]
+\begin{align*}
+    \text{$\hat{i}$-component:} & \quad \frac{\partial}{\partial y}(zxy) - \frac{\partial}{\partial z}(-yx^2) = zx - 0 = zx \\
+    \text{$\hat{j}$-component:} & \quad \frac{\partial}{\partial z}(x^2 z) - \frac{\partial}{\partial x}(zxy) = x^2 - zy \\
+    \text{$\hat{k}$-component:} & \quad \frac{\partial}{\partial x}(-yx^2) - \frac{\partial}{\partial y}(x^2 z) = -2xy - 0 = -2xy
+\end{align*}
+\[
+    \nabla \times \vec{f} = \langle zx, x^2 - zy, -2xy \rangle
+\]
+The outward unit normal for the sphere $x^2+y^2+z^2=9$ is
+$\hat{n} = \frac{1}{3}\langle x, y, z \rangle$. Calculate the dot product
+$(\nabla \times \vec{f}) \cdot \hat{n}$:
+\begin{align*}
+    (\nabla \times \vec{f}) \cdot \hat{n} &= \frac{1}{3} \left[ (zx)(x) + (x^2 - zy)(y) + (-2xy)(z) \right] \\
+    &= \frac{1}{3} [ zx^2 + x^2y - zy^2 - 2xyz ]
+\end{align*}
+We integrate this over the hemisphere. Using spherical coordinates
+($x=3\sin\phi\cos\theta, y=3\sin\phi\sin\theta, z=3\cos\phi$) is possible but
+tedious due to the many terms. Instead, let's analyze the symmetry of the terms
+over the domain $0 \le \theta \le 2\pi$.
+\\
+The area element is $dS = 9\sin\phi \, d\phi \, d\theta$.
+The integral of any term with an odd power of $x$ or $y$ (like $\cos\theta$ or
+$\sin\theta$) over a full circle ($0$ to $2\pi$) is zero.
+\\
+Let's check the terms in the numerator: $zx^2 + x^2y - zy^2 - 2xyz$.
+\begin{enumerate}
+    \item $zx^2 \propto (\cos\phi)(\sin^2\phi\cos^2\theta)$. Contains $\cos^2\theta$. Integral $\int_0^{2\pi} \cos^2\theta d\theta = \pi$. This term might be non-zero.
+    \item $x^2y \propto (\sin^2\phi\cos^2\theta)(\sin\phi\sin\theta)$. Contains $\cos^2\theta\sin\theta$. Let $u=\cos\theta$, $du=-\sin\theta d\theta$. Integral from $1$ to $1$ is 0.
+    \item $zy^2 \propto (\cos\phi)(\sin^2\phi\sin^2\theta)$. Contains $\sin^2\theta$. Integral $\int_0^{2\pi} \sin^2\theta d\theta = \pi$. This term might be non-zero.
+    \item $2xyz \propto (\sin\phi\cos\theta)(\sin\phi\sin\theta)(\cos\phi)$. Contains $\sin\theta\cos\theta = \frac{1}{2}\sin 2\theta$. Integral over period is 0.
+\end{enumerate}
+So we only need to integrate the first and third terms:
+$\frac{1}{3}(zx^2 - zy^2)$.
+\[
+    \text{Integrand} = \frac{1}{3} z (x^2 - y^2)
+\]
+Substitute spherical coordinates ($x^2 - y^2 = \rho^2\sin^2\phi(\cos^2\theta - \sin^2\theta) = \rho^2\sin^2\phi\cos(2\theta)$).
+\[
+    \iint \frac{1}{3} (3\cos\phi) [ 9\sin^2\phi \cos(2\theta) ] (9\sin\phi) \, d\phi \, d\theta
+\]
+The $\theta$ integral is $\int_0^{2\pi} \cos(2\theta) \, d\theta$. Since we are
+integrating $\cos(2\theta)$ over two full periods ($0$ to $4\pi$ effectively in
+the argument), the result is \textit{zero}.
+\\
+\\
+\textbf{Conclusion}
+\[
+    \iint_S (\nabla \times \vec{f}) \cdot d\vec{s} = 0
+\]
+Both integrals are 0, verifying Stokes' Theorem.
+
 \end{document}
